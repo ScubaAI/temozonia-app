@@ -1,0 +1,62 @@
+/* ===== Custom Animations ===== */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGold {
+  0%, 100% {
+    box-shadow: 0 0 15px 4px rgba(212, 175, 55, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 25px 8px rgba(212, 175, 55, 0.55);
+  }
+}
+
+@keyframes shimmerGold {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Export as CSS classes for direct use */
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.pulse-gold {
+  animation: pulseGold 2s ease-in-out infinite;
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.3) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmerGold 3s linear infinite;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade-in for page transitions */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}

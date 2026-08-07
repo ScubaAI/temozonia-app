@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://temozonia-app.vercel.app/sitemap.xml
+
+# Disallow admin/API
+Disallow: /api/webhook/
+Disallow: /api/whatsapp/

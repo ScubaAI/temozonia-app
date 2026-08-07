@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "title": "Temozonia — Flavors & Tradition from Mexico",
+    "description": "Honey, wine, coffee and Mexican crafts. Pay with Bitcoin Lightning or card."
+  },
+  "common": {
+    "addToCart": "Add",
+    "bestSeller": "Best Seller",
+    "bitcoinLightning": "Bitcoin Lightning",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery",
+    "loading": "Loading…"
+  },
+  "navigation": {
+    "home": "Home",
+    "menu": "Catalog",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "order": "My order"
+  },
+  "home": {
+    "heroKicker": "Living heritage of Mexico",
+    "heroTitle": "Flavors that tell stories",
+    "heroSubtitle": "Hand-picked artisanal products, straight from the hands that craft them. We accept Bitcoin Lightning with 0% fees.",
+    "ctaCatalog": "Browse catalog",
+    "ctaBitcoin": "We accept Bitcoin"
+  },
+  "menu": {
+    "title": "Catalog",
+    "subtitle": "From the milpa to your table",
+    "empty": "No products in this category yet."
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty.",
+    "emptyCta": "Browse catalog",
+    "checkout": "Proceed to checkout"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "breadcrumb": "Checkout",
+    "customerInfo": "Contact Information",
+    "name": "Full name",
+    "email": "Email address",
+    "phone": "WhatsApp (for order tracking)",
+    "address": "Delivery address",
+    "deliveryZone": "Delivery zone",
+    "paymentMethod": "Payment method",
+    "payWithBtc": "Bitcoin Lightning (0% fees)",
+    "payWithCard": "Credit/Debit Card",
+    "placeOrder": "Confirm & Pay",
+    "emptyCart": "Your cart is empty",
+    "backToMenu": "Back to catalog",
+    "summary": "Order summary",
+    "processing": "Processing..."
+  },
+  "order": {
+    "title": "Order confirmed",
+    "pending": "Waiting for payment confirmation…",
+    "receipt": "Digital receipt"
+  },
+  "footer": {
+    "tagline": "Tradition worth sharing",
+    "rights": "All rights reserved."
+  },
+  "delivery": {
+    "zones": {
+      "centro": "Downtown (CDMX)",
+      "metro": "Metro Area",
+      "nacional": "Nationwide"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "cta": "Back to home"
+  }
+}

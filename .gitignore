@@ -1,0 +1,118 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Next.js
+next-env.d.ts
+.next/cache/
+.vercel/
+.vercel_build_output/
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+.env.*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+playwright-report/
+test-results/
+*.test.ts.snap
+
+# Husky
+.husky/_
+
+# Prettier
+.prettierignore
+
+# Misc
+*.pem
+*.key
+*.cert
+upload*
+uploads/
+.temp/
+.tmp/
+.cache/
+.parcel-cache/
+storybook-static/
+.wepy/
+
+# Stripe
+stripe-webhook/
+webhook/
+
+# Package manager lock files (only if not using npm)
+# yarn.lock
+# pnpm-lock.yaml
+
+# Misc
+*.pid
+*.seed
+*.pid.lock

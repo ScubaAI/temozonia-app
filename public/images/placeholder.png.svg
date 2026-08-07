@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="320" viewBox="0 0 400 320">
+  <rect width="400" height="320" rx="12" fill="#1a1a20"/>
+  <rect x="40" y="80" width="320" height="80" rx="8" fill="#d4af3720"/>
+  <text x="200" y="140" font-family="system-ui, sans-serif" font-size="18" fill="#9ca3af" text-anchor="middle">
+    Imagen de producto
+  </text>
+  <circle cx="200" cy="110" r="24" fill="#d4af3740"/>
+  <text x="200" y="115" font-family="Georgia, serif" font-size="12" fill="#fbbf2f" text-anchor="middle">
+    🌳
+  </text>
+</svg>

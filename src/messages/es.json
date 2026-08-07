@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "title": "Temozonia — Sabores y tradición de México",
+    "description": "Miel, vinos, café y artesanías mexicanas. Paga con Bitcoin Lightning o tarjeta."
+  },
+  "common": {
+    "addToCart": "Agregar",
+    "bestSeller": "Más Vendido",
+    "bitcoinLightning": "Bitcoin Lightning",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "delivery": "Envío",
+    "loading": "Cargando…"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "menu": "Catálogo",
+    "cart": "Carrito",
+    "checkout": "Pagar",
+    "order": "Mi pedido"
+  },
+  "home": {
+    "heroKicker": "Herencia viva de México",
+    "heroTitle": "Sabores que cuentan historias",
+    "heroSubtitle": "Productos artesanales seleccionados, directo de las manos que los crean. Aceptamos Bitcoin Lightning con 0% comisión.",
+    "ctaCatalog": "Ver catálogo",
+    "ctaBitcoin": "Aceptamos Bitcoin"
+  },
+  "menu": {
+    "title": "Catálogo",
+    "subtitle": "De la milpa a tu mesa",
+    "empty": "Aún no hay productos en esta categoría."
+  },
+  "cart": {
+    "title": "Tu carrito",
+    "empty": "Tu carrito está vacío.",
+    "emptyCta": "Explorar catálogo",
+    "checkout": "Continuar al pago"
+  },
+  "checkout": {
+    "title": "Finalizar Compra",
+    "breadcrumb": "Checkout",
+    "customerInfo": "Datos de Contacto",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "phone": "WhatsApp (para seguimiento)",
+    "address": "Dirección de entrega",
+    "deliveryZone": "Zona de envío",
+    "paymentMethod": "Método de pago",
+    "payWithBtc": "Bitcoin Lightning (0% comisión)",
+    "payWithCard": "Tarjeta de Crédito/Débito",
+    "placeOrder": "Confirmar y Pagar",
+    "emptyCart": "Tu carrito está vacío",
+    "backToMenu": "Volver al catálogo",
+    "summary": "Resumen del pedido",
+    "processing": "Procesando..."
+  },
+  "order": {
+    "title": "Pedido confirmado",
+    "pending": "Esperando confirmación de pago…",
+    "receipt": "Recibo digital"
+  },
+  "footer": {
+    "tagline": "Tradición que se comparte",
+    "rights": "Todos los derechos reservados."
+  },
+  "delivery": {
+    "zones": {
+      "centro": "Centro (CDMX)",
+      "metro": "Zona Metropolitana",
+      "nacional": "Nacional"
+    }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe.",
+    "cta": "Volver al inicio"
+  }
+}
