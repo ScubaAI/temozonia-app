@@ -50,6 +50,18 @@
       "title": "Financial sovereignty in every purchase",
       "desc": "Temozonia is a Bitcoin-friendly platform. By choosing Lightning Network, you support a fairer, decentralized economy.",
       "cta": "Learn how to pay"
+    },
+    "whatsappCta": {
+      "title": "Chat with us on WhatsApp",
+      "subtitle": "Place your order directly and get personalized attention within minutes.",
+      "benefits": {
+        "personal": "Personalized attention for your order",
+        "fast": "Immediate response and quote within minutes",
+        "wholesale": "Special offers for wholesale orders"
+      },
+      "phoneLabel": "Call or message us",
+      "ctaButton": "Order on WhatsApp",
+      "urgency": "Limited availability — we respond within minutes"
     }
   },
   "menu": {
