@@ -18,7 +18,7 @@ export function ProductCard({ product, locale }: { product: Product; locale: str
 
   return (
     <article className="product-card-heritage group flex flex-col overflow-hidden">
-      {product.metadata?.bestSeller && (
+      {Boolean(product.metadata?.bestSeller) && (
         <span className="badge-ribbon">{t("bestSeller")}</span>
       )}
       

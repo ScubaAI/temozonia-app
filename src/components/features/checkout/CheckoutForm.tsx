@@ -11,6 +11,7 @@ import { DELIVERY_ZONES, SITE } from "@/lib/constants";
 import type { Locale } from "@/lib/i18n/routing";
 
 export default function CheckoutForm({ locale }: { locale: Locale }) {
+  // 1. TODOS LOS HOOKS VAN AL PRINCIPIO
   const t = useTranslations("checkout");
   const tCommon = useTranslations("common");
   const tDelivery = useTranslations("delivery");
@@ -19,7 +20,24 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
   const { items, getTotal, clearCart } = useCartStore();
   const subtotal = getTotal();
 
-  // Redirigir si el carrito está vacío
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+  const [selectedZoneId, setSelectedZoneId] = useState<string>(DELIVERY_ZONES[0].id);
+  const [paymentMethod, setPaymentMethod] = useState<"btc" | "card">("btc");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // 2. LÓGICA DE NEGOCIO
+  const selectedZone = DELIVERY_ZONES.find((z) => z.id === selectedZoneId) || DELIVERY_ZONES[0];
+  const deliveryFee = selectedZone.fee;
+  const isFreeShipping = subtotal >= SITE.freeShippingThreshold;
+  const finalDeliveryFee = isFreeShipping ? 0 : deliveryFee;
+  const finalTotal = subtotal + finalDeliveryFee;
+
+  // 3. RETURNS CONDICIONALES (DESPUÉS DE LOS HOOKS)
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-2xl px-6 py-24 text-center">
@@ -32,28 +50,11 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
     );
   }
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
-  const [selectedZoneId, setSelectedZoneId] = useState<string>(DELIVERY_ZONES[0].id);
-  const [paymentMethod, setPaymentMethod] = useState<"btc" | "card">("btc");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const selectedZone = DELIVERY_ZONES.find((z) => z.id === selectedZoneId) || DELIVERY_ZONES[0];
-  const deliveryFee = selectedZone.fee;
-  const total = subtotal + deliveryFee;
-  const isFreeShipping = subtotal >= SITE.freeShippingThreshold;
-  const finalDeliveryFee = isFreeShipping ? 0 : deliveryFee;
-  const finalTotal = subtotal + finalDeliveryFee;
-
+  // 4. HANDLERS
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Preparar payload para la API (Fase 7: aquí iremos a Prisma + BTCPay)
     const orderPayload = {
       locale,
       items,
@@ -63,7 +64,7 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
       currency: "MXN",
       customer: formData,
       delivery: {
-        zone: selectedZone.labelKey,
+        zone: tDelivery(selectedZone.labelKey),
         fee: finalDeliveryFee,
         eta: selectedZone.eta,
         address: formData.address,
@@ -74,19 +75,35 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
       },
     };
 
-    console.log("📦 Payload de orden listo para enviar:", orderPayload);
-    
-    // Simulación de delay de red
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    // TODO Fase 7: const res = await fetch('/api/orders', { method: 'POST', body: JSON.stringify(orderPayload) })
-    // Por ahora, redirigimos a una página de éxito mock
-    alert("✅ Orden creada (Mock). En la Fase 7 esto creará la factura BTCPay y guardará en Prisma.");
-    clearCart();
-    router.push(`/${locale}/menu`); // Cambiar a /order/[id] en Fase 7
-    setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error al crear la orden");
+      }
+
+      clearCart();
+
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      } else {
+        router.push(`/${locale}/order/${data.orderId}`);
+      }
+    } catch (error) {
+      console.error("Error en checkout:", error);
+      alert("Hubo un error al procesar tu orden. Por favor, intenta de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
+  // 5. RENDER
   return (
     <form onSubmit={handleSubmit} className="mx-auto max-w-6xl px-6 py-12">
       {/* Header */}

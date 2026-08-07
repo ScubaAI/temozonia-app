@@ -68,3 +68,11 @@ export const PRODUCTS: Product[] = [
     category: "frutas", seasonal: false, stock: 12,
   },
 ];
+
+export function getProducts(): Product[] {
+  return PRODUCTS;
+}
+
+export function getFeaturedProducts(): Product[] {
+  return PRODUCTS.filter((p) => p.metadata?.bestSeller === true);
+}

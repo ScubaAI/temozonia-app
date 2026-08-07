@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  subtotal        Int
+  tax             Int         @default(0)
+  deliveryFee     Int
+  total           Int
+  currency        String      @default("MXN")
+  discount        Int?
+
+  // Datos del cliente
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  customerAddress String
+
+  // Información de pago
+  paymentMethod   String      // "btc", "mercadopago", "stripe"
+  paymentStatus   String      @default("pending") // "pending", "paid", "failed", "refunded"
+  paymentProvider String?     // "btcpay", "mercadopago", "stripe"
+  providerOrderId String?     // ID de la orden en el proveedor externo
+  txId            String?     // Hash de la transacción (BTC) o payment_id (MP)
+  invoiceId       String?     // ID de la factura en BTCPay
+
+  // Información de envío
+  deliveryZone    String
+  deliveryEta     String
+  deliveryAddress String
+
+  // Metadata
+  locale          String      @default("es")
+  notes           String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id          String  @id @default(cuid())
+  orderId     String
+  productId   String
+  name        String
+  description String
+  price       Int         // En centavos
+  quantity    Int
+  currency    String      @default("MXN")
+  image       String?
+
+  order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}

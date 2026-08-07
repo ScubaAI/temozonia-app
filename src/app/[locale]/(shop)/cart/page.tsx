@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { CartDrawer } from "@/components/features/cart/CartDrawer";
+import { CartDrawerWrapper } from "@/components/layout/CartDrawerWrapper";
 
 export default async function CartPage({
   params,
@@ -12,7 +12,7 @@ export default async function CartPage({
   return (
     <section className="container mx-auto px-4 py-12">
       <h1 className="font-display text-4xl text-gold mb-8">{t("title")}</h1>
-      <CartDrawer />
+      <CartDrawerWrapper locale={locale} />
     </section>
   );
 }

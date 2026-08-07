@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Facebook, Instagram, Youtube } from "lucide-react";
+import { Globe, ExternalLink } from "lucide-react";
 
 export function Footer({ locale }: { locale: string }) {
   const t = useTranslations("footer");
@@ -35,14 +35,14 @@ export function Footer({ locale }: { locale: string }) {
               Síguenos
             </h4>
             <div className="flex gap-4">
-              <a href="#" className="glass-btn-dark p-2.5 hover:bg-gold/10" aria-label="Facebook">
-                <Facebook size={18} className="text-gold" />
+              <a href="#" className="glass-btn-dark p-2.5 hover:bg-gold/10" aria-label="Sitio web">
+                <Globe size={18} className="text-gold" />
               </a>
-              <a href="#" className="glass-btn-dark p-2.5 hover:bg-gold/10" aria-label="Instagram">
-                <Instagram size={18} className="text-gold" />
+              <a href="#" className="glass-btn-dark p-2.5 hover:bg-gold/10" aria-label="Red social">
+                <ExternalLink size={18} className="text-gold" />
               </a>
-              <a href="#" className="glass-btn-dark p-2.5 hover:bg-gold/10" aria-label="YouTube">
-                <Youtube size={18} className="text-gold" />
+              <a href="#" className="glass-btn-dark p-2.5 hover:bg-gold/10" aria-label="Canal">
+                <ExternalLink size={18} className="text-gold" />
               </a>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ShoppingCart, Menu } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
-import { routing, type Locale } from "@/lib/i18n/routing";
+import type { Locale } from "@/lib/i18n/routing";
 
 export function Header({ locale }: { locale: Locale }) {
   const t = useTranslations("navigation");

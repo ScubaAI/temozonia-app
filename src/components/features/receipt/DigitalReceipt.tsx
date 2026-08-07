@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/Badge";
+import { formatCurrency } from "@/lib/formatters";
 
 interface DigitalReceiptProps {
   orderId: string;
@@ -9,18 +10,24 @@ interface DigitalReceiptProps {
   order?: any;
 }
 
-export function DigitalReceipt({ orderId, locale: _locale = "es", order }: DigitalReceiptProps) {
+export function DigitalReceipt({ orderId, locale = "es", order }: DigitalReceiptProps) {
   const t = useTranslations("Receipt");
 
   const orderData = order || {
     id: orderId,
     items: [],
+    subtotal: 0,
+    tax: 0,
+    deliveryFee: 0,
     total: 0,
     currency: "MXN",
-    status: "paid",
+    status: "pending",
     createdAt: new Date().toISOString(),
-    customer: { name: "Cliente", email: "" }
+    customer: { customerName: "Cliente", customerEmail: "" },
   };
+
+  const currency = orderData.currency || "MXN";
+  const status = orderData.paymentStatus || orderData.status;
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -30,13 +37,13 @@ export function DigitalReceipt({ orderId, locale: _locale = "es", order }: Digit
             <h2 className="font-display text-3xl text-gold">Recibo Digital</h2>
             <p className="text-sm text-muted-foreground">#{orderData.id}</p>
           </div>
-          <Badge variant="gold">{orderData.status === "paid" ? "Pagado" : "Pendiente"}</Badge>
+          <Badge variant="gold">{status === "paid" ? "Pagado" : "Pendiente"}</Badge>
         </div>
 
         <div className="space-y-4">
           <h3 className="text-gold">{t("customer")}</h3>
-          <p>{orderData.customer.name}</p>
-          <p className="text-sm text-muted-foreground">{orderData.customer.email}</p>
+          <p>{orderData.customerName || orderData.customer?.name}</p>
+          <p className="text-sm text-muted-foreground">{orderData.customerEmail || orderData.customer?.email}</p>
         </div>
 
         <div className="space-y-4">
@@ -55,8 +62,8 @@ export function DigitalReceipt({ orderId, locale: _locale = "es", order }: Digit
                 <tr key={i} className="border-b border-gold-500/10">
                   <td className="py-2">{item.name}</td>
                   <td className="text-right">{item.quantity}</td>
-                  <td className="text-right">{item.price} {orderData.currency}</td>
-                  <td className="text-right">{item.total} {orderData.currency}</td>
+                  <td className="text-right">{formatCurrency(item.price, item.currency || currency, locale)}</td>
+                  <td className="text-right">{formatCurrency(item.price * item.quantity, item.currency || currency, locale)}</td>
                 </tr>
               ))}
             </tbody>
@@ -66,15 +73,19 @@ export function DigitalReceipt({ orderId, locale: _locale = "es", order }: Digit
         <div className="border-t border-gold-500/30 pt-4 space-y-2">
           <div className="flex justify-between">
             <span className="text-gold">{t("subtotal")}</span>
-            <span>${orderData.total - 49 - (orderData.total * 0.16)}</span>
+            <span>{formatCurrency(orderData.subtotal, currency, locale)}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gold">{t("tax")}</span>
-            <span>${orderData.total * 0.16}</span>
+            <span>{formatCurrency(orderData.tax || 0, currency, locale)}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gold">{t("delivery")}</span>
+            <span>{formatCurrency(orderData.deliveryFee || 0, currency, locale)}</span>
           </div>
           <div className="flex justify-between text-xl font-bold text-gold">
             <span>{t("total")}</span>
-            <span className="gold-accent">${orderData.total} {orderData.currency}</span>
+            <span className="gold-accent">{formatCurrency(orderData.total, currency, locale)}</span>
           </div>
         </div>
       </div>

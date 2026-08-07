@@ -106,7 +106,30 @@ export async function updateOrderFromBtcpay(payload: any): Promise<void> {
     throw new BtcpayError("Missing orderId in webhook payload", "VALIDATION_ERROR");
   }
 
-  console.log(`[BTCPay] Order ${orderId} status: ${payload.status}`);
+  const statusMap: Record<string, string> = {
+    new: "pending",
+    paid: "paid",
+    confirmed: "paid",
+    complete: "paid",
+    expired: "failed",
+    invalid: "failed",
+    cancelled: "refunded",
+  };
+
+  const paymentStatus = statusMap[payload.status] || "pending";
+
+  const { prisma } = await import("@/lib/prisma");
+
+  await prisma.order.update({
+    where: { id: orderId },
+    data: {
+      paymentStatus,
+      txId: payload.transactionHash || payload.invoiceId,
+      updatedAt: new Date(),
+    },
+  });
+
+  console.log(`[BTCPay] Order ${orderId} status updated to: ${paymentStatus}`);
 }
 
 function generateContentHash(body: any): string {

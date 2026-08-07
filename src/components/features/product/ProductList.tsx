@@ -28,7 +28,7 @@ export default function ProductList({
       data = getFeaturedProducts();
     } else if (category) {
       const all = getProducts();
-      data = all.filter((p) => p.category === category);
+      data = all.filter((p: Product) => p.category === category);
     } else {
       data = getProducts();
     }
