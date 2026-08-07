@@ -20,11 +20,37 @@
     "order": "My order"
   },
   "home": {
-    "heroKicker": "Living heritage of Mexico",
-    "heroTitle": "Flavors that tell stories",
-    "heroSubtitle": "Hand-picked artisanal products, straight from the hands that craft them. We accept Bitcoin Lightning with 0% fees.",
-    "ctaCatalog": "Browse catalog",
-    "ctaBitcoin": "We accept Bitcoin"
+    "heroKicker": "Temozón, Yucatán",
+    "heroTitle": "Temozonia Smoked Meats",
+    "heroSubtitle": "We make smoked meat, artisanal sausage, smoked ribs and other 100% handmade specialties. Quality, tradition and flavor in every bite.",
+    "heroLocation": "Church of Temozón — Birthplace of our tradition",
+    "products": {
+      "meat": "Smoked Meat",
+      "sausage": "Artisanal Sausage",
+      "ribs": "Smoked Ribs"
+    },
+    "ctaCatalog": "View products",
+    "ctaBitcoin": "Pay with Bitcoin",
+    "features": {
+      "title": "Why choose us?",
+      "artisanal": {
+        "title": "100% Artisanal",
+        "desc": "Each product is handmade with traditional smoking techniques. No industrial processes, only authentic flavor."
+      },
+      "tradition": {
+        "title": "Family Tradition",
+        "desc": "Heirs of the Yucatecan tradition of Temozón. We smoke with patience and dedication, just like they used to."
+      },
+      "wholesale": {
+        "title": "Wholesale & Retail",
+        "desc": "We serve the general public, restaurants and hotels. Guaranteed quality for any volume."
+      }
+    },
+    "bitcoinBanner": {
+      "title": "Financial sovereignty in every purchase",
+      "desc": "Temozonia is a Bitcoin-friendly platform. By choosing Lightning Network, you support a fairer, decentralized economy.",
+      "cta": "Learn how to pay"
+    }
   },
   "menu": {
     "title": "Catalog",

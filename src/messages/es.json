@@ -20,11 +20,37 @@
     "order": "Mi pedido"
   },
   "home": {
-    "heroKicker": "Herencia viva de México",
-    "heroTitle": "Sabores que cuentan historias",
-    "heroSubtitle": "Productos artesanales seleccionados, directo de las manos que los crean. Aceptamos Bitcoin Lightning con 0% comisión.",
-    "ctaCatalog": "Ver catálogo",
-    "ctaBitcoin": "Aceptamos Bitcoin"
+    "heroKicker": "Temozón, Yucatán",
+    "heroTitle": "Temozonia Carnes Ahumadas",
+    "heroSubtitle": "Elaboramos carne, longaniza, costillas ahumadas y otras especialidades 100% artesanales. Calidad, tradición y sabor en cada bocado.",
+    "heroLocation": "Iglesia de Temozón — Cuna de nuestra tradición",
+    "products": {
+      "meat": "Carne Ahumada",
+      "sausage": "Longaniza Artesanal",
+      "ribs": "Costillas"
+    },
+    "ctaCatalog": "Ver productos",
+    "ctaBitcoin": "Pagar con Bitcoin",
+    "features": {
+      "title": "¿Por qué elegirnos?",
+      "artisanal": {
+        "title": "100% Artesanal",
+        "desc": "Cada producto es elaborado a mano con técnicas tradicionales de ahumado. Sin procesos industriales, solo sabor auténtico."
+      },
+      "tradition": {
+        "title": "Tradición Familiar",
+        "desc": "Herederos de la tradición yucateca de Temozón. Ahumamos con paciencia y dedicación, como se hacía antes."
+      },
+      "wholesale": {
+        "title": "Mayoreo y Menudeo",
+        "desc": "Atendemos al público general, restaurantes y hoteles. Calidad garantizada para cualquier volumen."
+      }
+    },
+    "bitcoinBanner": {
+      "title": "Soberanía financiera en cada compra",
+      "desc": "Temozonia es una plataforma Bitcoin-friendly. Al elegir Lightning Network, apoyas una economía más justa y descentralizada.",
+      "cta": "Aprende cómo pagar"
+    }
   },
   "menu": {
     "title": "Catálogo",
