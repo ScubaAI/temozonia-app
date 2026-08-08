@@ -319,5 +319,9 @@
   "promos": {
     "title": "Promociones de Temporada",
     "subtitle": "Ofertas especiales y paquetes para celebrar contigo."
+  },
+  "partners": {
+    "title": "Comercios Bitcoin-Friendly",
+    "subtitle": "Descubre otros negocios que aceptan Bitcoin en México"
   }
 }

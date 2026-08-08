@@ -303,5 +303,9 @@
       "subtitle": "Message us directly and an advisor will assist you immediately with a custom proposal.",
       "button": "Send WhatsApp Message"
     }
+  },
+  "partners": {
+    "title": "Bitcoin-Friendly Businesses",
+    "subtitle": "Discover other businesses that accept Bitcoin in Mexico"
   }
 }

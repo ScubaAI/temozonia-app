@@ -17,6 +17,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { CartDrawerWrapper } from "@/components/layout/CartDrawerWrapper";
+import BitcoinPartnersMarquee from "@/components/features/partners/BitcoinPartnersMarquee";
 
 // Fuentes
 const fontDisplay = Playfair_Display({
@@ -79,6 +80,7 @@ export default async function LocaleLayout({
           <main className="flex-1">
             {children}
           </main>
+          <BitcoinPartnersMarquee />
           <Footer locale={locale} />
           <WhatsAppFloat />
           <CartDrawerWrapper locale={locale} />

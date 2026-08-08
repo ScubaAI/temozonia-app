@@ -1,0 +1,42 @@
+[
+  {
+    "id": "la-bianca",
+    "name": "La Bianca",
+    "description": "Restaurante italiano gourmet",
+    "logo": "/images/partners/la-bianca.svg",
+    "url": "https://www.labianca.com.mx",
+    "location": "CDMX"
+  },
+  {
+    "id": "bitcoin-embassy",
+    "name": "Bitcoin Embassy",
+    "description": "Centro cultural Bitcoin",
+    "logo": "/images/partners/bitcoin-embassy.svg",
+    "url": "https://bitcoinembassy.mx",
+    "location": "CDMX"
+  },
+  {
+    "id": "carnes-puebla",
+    "name": "Carnes de Puebla",
+    "description": "Carnes ahumadas artesanales",
+    "logo": "/images/partners/carnes-puebla.svg",
+    "url": "https://example.com",
+    "location": "Puebla"
+  },
+  {
+    "id": "temozonia",
+    "name": "Temozonia",
+    "description": "Carnes ahumadas de Yucatán",
+    "logo": "/images/partners/temozonia.svg",
+    "url": "https://temozonia.com",
+    "location": "Mérida, Yucatán"
+  },
+  {
+    "id": "orange-pizza",
+    "name": "Orange Pizza",
+    "description": "Pizzería Bitcoin-friendly",
+    "logo": "/images/partners/orange-pizza.svg",
+    "url": "https://orangepizza.mx",
+    "location": "CDMX"
+  }
+]
