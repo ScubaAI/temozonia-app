@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Instagram, Facebook, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, Camera, Users, ExternalLink } from "lucide-react";
 
 export function Footer({ locale }: { locale: string }) {
   const t = useTranslations("footer");
@@ -119,7 +119,7 @@ export function Footer({ locale }: { locale: string }) {
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-cream/5 text-gold transition-all hover:bg-gold hover:text-dark-wood hover:shadow-gold-glow"
                 aria-label={t("social.instagram")}
               >
-                <Instagram size={20} />
+                <Camera size={20} />
               </a>
               <a
                 href="https://www.facebook.com/temozoniacarnesahumadas/"
@@ -128,7 +128,7 @@ export function Footer({ locale }: { locale: string }) {
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-cream/5 text-gold transition-all hover:bg-gold hover:text-dark-wood hover:shadow-gold-glow"
                 aria-label={t("social.facebook")}
               >
-                <Facebook size={20} />
+                <Users size={20} />
               </a>
             </div>
             <p className="font-body text-xs text-cream/40 pt-4">
