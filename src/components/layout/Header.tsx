@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Menu, X, Phone } from "lucide-react";
-import { routing, type Locale } from "@/lib/i18n/routing";
+import { type Locale } from "@/lib/i18n/routing";
 
 interface HeaderProps {
   locale: Locale;
