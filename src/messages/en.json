@@ -133,5 +133,92 @@
     "title": "Page not found",
     "description": "The page you are looking for does not exist.",
     "cta": "Back to home"
+  },
+  "about": {
+    "hero": {
+      "kicker": "Place of the Whirlwind",
+      "title": "Temozón, Birthplace of Smoked Meats",
+      "subtitle": "Since 1969, our family has preserved the Yucatecan tradition of artisanal smoking. Secret recipes passed down through generations, cooked with charcoal and patience."
+    },
+    "history": {
+      "title": "Our History",
+      "section1": {
+        "subtitle": "The Origin",
+        "text": "Temozón, which in Mayan means 'place of the whirlwind', is a peaceful community in eastern Yucatán. Over five decades ago, around 1969, several natives of this village began experimenting with smoking techniques that distinguish us to this day."
+      },
+      "section2": {
+        "subtitle": "Family Tradition",
+        "text": "What began as a family enterprise is now a legacy we preserve with pride. More than 18 butcher shops on Temozón's main street keep this tradition alive, each with its own identity but sharing the same commitment to quality."
+      },
+      "section3": {
+        "subtitle": "The Secret",
+        "text": "There are recipes that no family reveals. The perfect marinade, the exact ingredients, the precise cooking time... These are secrets we guard jealously and that make every bite of our smoked meats unique."
+      }
+    },
+    "process": {
+      "title": "The Artisanal Process",
+      "steps": {
+        "selection": {
+          "title": "Selection",
+          "desc": "Every morning, from very early, we select the freshest meat from trusted local suppliers."
+        },
+        "marinade": {
+          "title": "Secret Marinade",
+          "desc": "We prepare the meat with our secret family recipe, a perfect combination of spices and Yucatecan flavors."
+        },
+        "smoking": {
+          "title": "Charcoal Smoking",
+          "desc": "We cook slowly over charcoal, allowing the smoke to infuse every fiber of meat with unparalleled flavor."
+        },
+        "quality": {
+          "title": "Quality Control",
+          "desc": "Each piece is carefully reviewed to ensure it meets our highest standards."
+        }
+      }
+    },
+    "values": {
+      "title": "Our Values",
+      "items": {
+        "tradition": {
+          "title": "Tradition",
+          "desc": "We honor the ancestral smoking techniques inherited from our grandparents."
+        },
+        "quality": {
+          "title": "Quality",
+          "desc": "We only use fresh ingredients of the highest quality."
+        },
+        "family": {
+          "title": "Family",
+          "desc": "We are a family business where each member contributes their passion and dedication."
+        },
+        "community": {
+          "title": "Community",
+          "desc": "Temozón is our home. We support local commerce and the economy of our region."
+        }
+      }
+    },
+    "heritage": {
+      "title": "Cultural Heritage",
+      "subtitle": "More than smoked meats, we are guardians of a tradition",
+      "church": "Visit the Church of San Antonio de Padua and the temple of San Román, built in the 18th century, historical witnesses of our community.",
+      "ekbalam": "Just 14 kilometers from Temozón is Ek Balam, a majestic Mayan archaeological site that is part of our cultural identity.",
+      "cta": "Visit us in Temozón"
+    },
+    "products": {
+      "title": "Our Specialties",
+      "items": [
+        "Traditional Smoked Meats",
+        "Artisanal Sausage",
+        "Chorizo de Relleno",
+        "Yucatecan Poc Chuc",
+        "Special Cold Cuts",
+        "Smoked Ribs"
+      ]
+    },
+    "cta": {
+      "title": "Ready to taste the authentic flavor of Temozón?",
+      "subtitle": "Wholesale and retail. Personalized service for restaurants, hotels and the general public.",
+      "button": "Place your order now"
+    }
   }
 }

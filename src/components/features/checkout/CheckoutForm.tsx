@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Bitcoin, CreditCard, ArrowLeft } from "lucide-react";
+import { Bitcoin, CreditCard, ArrowLeft, Truck, Package } from "lucide-react";
 import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
 import { formatCurrency } from "@/lib/formatters";
@@ -29,6 +29,10 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
   const [selectedZoneId, setSelectedZoneId] = useState<string>(DELIVERY_ZONES[0].id);
   const [paymentMethod, setPaymentMethod] = useState<"btc" | "card">("btc");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [shippingRates, setShippingRates] = useState<any[]>([]);
+  const [selectedShippingRate, setSelectedShippingRate] = useState<string | null>(null);
+  const [isLoadingRates, setIsLoadingRates] = useState(false);
+  const [shippingError, setShippingError] = useState<string | null>(null);
 
   // 2. LÓGICA DE NEGOCIO
   const selectedZone = DELIVERY_ZONES.find((z) => z.id === selectedZoneId) || DELIVERY_ZONES[0];
@@ -103,6 +107,46 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
     }
   };
 
+  const calculateShipping = async () => {
+    setIsLoadingRates(true);
+    setShippingError(null);
+
+    try {
+      const response = await fetch("/api/shipping/rates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          originZip: "97300",
+          destinationZip: "97000",
+          weight: 2,
+          height: 20,
+          width: 30,
+          length: 40,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.error);
+      }
+
+      setShippingRates(data.rates);
+
+      if (data.rates.length > 0) {
+        const cheapest = data.rates.reduce((prev: any, curr: any) =>
+          prev.price < curr.price ? prev : curr
+        );
+        setSelectedShippingRate(cheapest.id);
+      }
+    } catch (error) {
+      console.error("Error calculando envío:", error);
+      setShippingError("No pudimos calcular el envío. Intenta de nuevo.");
+    } finally {
+      setIsLoadingRates(false);
+    }
+  };
+
   // 5. RENDER
   return (
     <form onSubmit={handleSubmit} className="mx-auto max-w-6xl px-6 py-12">
@@ -171,6 +215,102 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
                 />
               </div>
             </div>
+          </section>
+
+          {/* Zona de Envío - NUEVA SECCIÓN */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="font-display text-xl font-bold text-dark-wood">
+                {t("shipping.title")}
+              </h2>
+              <span className="font-display text-xs uppercase tracking-widest text-warm-brown">
+                {t("shipping.origin")}
+              </span>
+            </div>
+
+            <div>
+              <label className="block font-display text-xs uppercase tracking-widest text-warm-brown mb-2">
+                Código Postal de Destino
+              </label>
+              <div className="flex gap-3">
+                <input
+                  type="text"
+                  placeholder="97000"
+                  className="flex-1 rounded-lg border border-gold/30 bg-parchment px-4 py-3 font-body text-dark-wood placeholder-warm-brown/50 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={calculateShipping}
+                  disabled={isLoadingRates}
+                  className="btn-heritage px-6 py-3 disabled:opacity-50"
+                >
+                  {isLoadingRates ? (
+                    <span className="flex items-center gap-2">
+                      <Package size={18} className="animate-spin" />
+                      Calculando...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <Truck size={18} />
+                      {t("shipping.calculate")}
+                    </span>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {shippingError && (
+              <div className="rounded-lg border border-deep-red/30 bg-deep-red/5 p-4 text-center">
+                <p className="font-body text-sm text-deep-red">{shippingError}</p>
+                <button
+                  type="button"
+                  onClick={calculateShipping}
+                  className="mt-2 font-display text-xs uppercase tracking-widest text-brand-600 hover:text-brand-700"
+                >
+                  {t("shipping.tryAgain")}
+                </button>
+              </div>
+            )}
+
+            {shippingRates.length > 0 && (
+              <div className="grid gap-3">
+                {shippingRates.map((rate) => (
+                  <label
+                    key={rate.id}
+                    className={`relative flex cursor-pointer items-center justify-between rounded-lg border p-4 transition-all ${
+                      selectedShippingRate === rate.id
+                        ? "border-gold bg-gold/10 shadow-gold-glow"
+                        : "border-gold/30 bg-parchment hover:border-gold/60"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="shipping"
+                      value={rate.id}
+                      checked={selectedShippingRate === rate.id}
+                      onChange={(e) => setSelectedShippingRate(e.target.value)}
+                      className="sr-only"
+                    />
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-dark-wood/5">
+                        <Truck size={24} className="text-deep-red" />
+                      </div>
+                      <div>
+                        <span className="block font-display text-sm font-bold text-dark-wood">
+                          {rate.carrier} - {rate.service}
+                        </span>
+                        <span className="block font-body text-xs text-warm-brown">
+                          {rate.estimatedDays} {t("shipping.estimatedDays")}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="font-mono text-lg font-bold text-deep-red">
+                      {formatCurrency(rate.price, "MXN", locale)}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            )}
           </section>
 
           {/* Zona de Envío */}
