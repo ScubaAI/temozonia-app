@@ -11,6 +11,10 @@ import {
 import { locales, type Locale } from "@/lib/i18n/routing";
 import "@/styles/globals.css";
 import "@/styles/animations.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { CartDrawerWrapper } from "@/components/cart/CartDrawerWrapper";
 
 // Fuentes
 const fontDisplay = Playfair_Display({ subsets: ["latin"], weight: ["400", "700", "900"], variable: "--font-display", display: "swap" });
@@ -44,10 +48,13 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${fontDisplay.variable} ${fontScript.variable} ${fontBody.variable} ${fontMono.variable}`}>
       <body className="bg-cream font-body text-dark-wood antialiased flex flex-col min-h-screen">
         <NextIntlClientProvider>
-          {/* Aquí irían Header, Footer, CartDrawerWrapper cuando los integremos */}
+          <Header locale={locale as Locale} />
           <main className="flex-1">
             {children}
           </main>
+          <Footer locale={locale} />
+          <WhatsAppFloat />
+          <CartDrawerWrapper locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>
