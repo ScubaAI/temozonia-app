@@ -136,8 +136,8 @@
   },
   "delivery": {
     "zones": {
-      "centro": "Centro (CDMX)",
-      "metro": "Zona Metropolitana",
+      "merida": "Mérida",
+      "yucatan": "Yucatán",
       "nacional": "Nacional"
     }
   },

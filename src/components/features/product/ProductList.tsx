@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { Product } from "@/types/product";
-import { getFeaturedProducts, getProducts } from "@/lib/constants";
+import { PRODUCTS } from "@/lib/constants";
 
 interface ProductListProps {
   locale?: string;
@@ -25,12 +25,11 @@ export default function ProductList({
     let data: Product[];
 
     if (featured) {
-      data = getFeaturedProducts();
+      data = PRODUCTS.filter((p: Product) => p.metadata?.bestSeller === true);
     } else if (category) {
-      const all = getProducts();
-      data = all.filter((p: Product) => p.category === category);
+      data = PRODUCTS.filter((p: Product) => p.category === category);
     } else {
-      data = getProducts();
+      data = PRODUCTS;
     }
 
     if (limit) {

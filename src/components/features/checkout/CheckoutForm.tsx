@@ -33,10 +33,12 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
   const [selectedShippingRate, setSelectedShippingRate] = useState<string | null>(null);
   const [isLoadingRates, setIsLoadingRates] = useState(false);
   const [shippingError, setShippingError] = useState<string | null>(null);
+  const [destinationZip, setDestinationZip] = useState("");
 
   // 2. LÓGICA DE NEGOCIO
   const selectedZone = DELIVERY_ZONES.find((z) => z.id === selectedZoneId) || DELIVERY_ZONES[0];
-  const deliveryFee = selectedZone.fee;
+  const selectedRateObj = shippingRates.find((r) => r.id === selectedShippingRate);
+  const deliveryFee = selectedRateObj ? selectedRateObj.price : selectedZone.fee;
   const isFreeShipping = subtotal >= SITE.freeShippingThreshold;
   const finalDeliveryFee = isFreeShipping ? 0 : deliveryFee;
   const finalTotal = subtotal + finalDeliveryFee;
@@ -68,9 +70,13 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
       currency: "MXN",
       customer: formData,
       delivery: {
-        zone: tDelivery(selectedZone.labelKey),
+        zone: selectedRateObj 
+          ? `${selectedRateObj.carrier} - ${selectedRateObj.service}`
+          : tDelivery(selectedZone.labelKey),
         fee: finalDeliveryFee,
-        eta: selectedZone.eta,
+        eta: selectedRateObj 
+          ? `${selectedRateObj.estimatedDays} días`
+          : selectedZone.eta,
         address: formData.address,
       },
       payment: {
@@ -94,8 +100,9 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
 
       clearCart();
 
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
+      const paymentUrl = data.paymentUrl || data.checkoutUrl;
+      if (paymentUrl) {
+        window.location.href = paymentUrl;
       } else {
         router.push(`/${locale}/order/${data.orderId}`);
       }
@@ -108,6 +115,10 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
   };
 
   const calculateShipping = async () => {
+    if (!destinationZip) {
+      setShippingError("Por favor ingresa un código postal");
+      return;
+    }
     setIsLoadingRates(true);
     setShippingError(null);
 
@@ -117,7 +128,7 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           originZip: "97300",
-          destinationZip: "97000",
+          destinationZip: destinationZip,
           weight: 2,
           height: 20,
           width: 30,
@@ -236,6 +247,8 @@ export default function CheckoutForm({ locale }: { locale: Locale }) {
                 <input
                   type="text"
                   placeholder="97000"
+                  value={destinationZip}
+                  onChange={(e) => setDestinationZip(e.target.value)}
                   className="flex-1 rounded-lg border border-gold/30 bg-parchment px-4 py-3 font-body text-dark-wood placeholder-warm-brown/50 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold transition-all"
                 />
                 <button

@@ -124,8 +124,8 @@
   },
   "delivery": {
     "zones": {
-      "centro": "Downtown (CDMX)",
-      "metro": "Metro Area",
+      "merida": "Mérida",
+      "yucatan": "Yucatán",
       "nacional": "Nationwide"
     }
   },

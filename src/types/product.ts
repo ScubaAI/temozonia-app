@@ -24,6 +24,7 @@ export interface ProductWithVariants extends Product {
 }
 
 export type ProductCategory =
+  | "carnes"
   | "frutas"
   | "flores"
   | "otros"
