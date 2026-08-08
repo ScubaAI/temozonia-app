@@ -1,0 +1,29 @@
+[
+  {
+    "id": "promo-navidad-2024",
+    "active": true,
+    "title": "Pack Navideño Temozón",
+    "subtitle": "Carne ahumada, longaniza y chorizo para tu cena. ¡Haz tus pedidos con anticipación!",
+    "image": "/images/promos/navidad-2024.jpg",
+    "ctaText": "Ver paquete navideño",
+    "ctaLink": "/es/menu?category=navidad"
+  },
+  {
+    "id": "promo-dia-padre",
+    "active": false,
+    "title": "Asada de Día del Padre",
+    "subtitle": "Consiente a papá con nuestras costillas ahumadas y cortes premium.",
+    "image": "/images/promos/dia-padre.jpg",
+    "ctaText": "Reservar ahora",
+    "ctaLink": "/es/menu?category=costillas"
+  },
+  {
+    "id": "promo-mayoreo",
+    "active": true,
+    "title": "Precios Especiales de Mayoreo",
+    "subtitle": "¿Tienes un restaurante o tienda? Obtén hasta un 20% de descuento en pedidos superiores a 20kg.",
+    "image": "/images/promos/mayoreo.jpg",
+    "ctaText": "Solicitar cotización",
+    "ctaLink": "/es/wholesale"
+  }
+]

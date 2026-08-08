@@ -15,7 +15,7 @@
                           │  HTTPS / API Routes
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  Next.js 14 (Vercel Edge)                   │
+│                  Next.js 15 (Vercel Edge)                   │
 │                                                             │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────────────┐│
 │  │ src/app  │ │ src/components │ │ src/services │ │ src/store │ │
@@ -23,27 +23,28 @@
 │  │ API, pages)│ │                │ │                │ │            │
 │  └──────────┘ └──────────┘ └──────────┘ └────────────────┘│
 └─────────────────────────────────────────────────────────────┘
-                          │
-        ┌─────────────────┼──────────────────────────┐
-        ▼                 ▼                          ▼
-  ┌──────────┐  ┌────────────────┐  ┌────────────────────────┐
-  │ BTCPay   │  │ Mercado Pago   │  │ WhatsApp Business API  │
-  │ Server   │  │ (Stripe fallback)│ │ (notificaciones)       │
-  └──────────┘  └────────────────┘  └────────────────────────┘
+        │                 │
+        │ Prisma ORM      │ HTTPS / APIs
+        ▼                 ├─────────────────┬──────────────────────────┬──────────────────────┐
+┌──────────────┐          ▼                 ▼                          ▼                      ▼
+│  PostgreSQL  │    ┌──────────┐  ┌────────────────┐  ┌────────────────────────┐  ┌───────────────┐
+│  Database    │    │ BTCPay   │  │ Mercado Pago   │  │ WhatsApp Business API  │  │   Skydropx    │
+└──────────────┘    │ Server   │  │ (Stripe fallback)│ │ (notificaciones)       │  │ (envíos/rates)│
+                    └──────────┘  └────────────────┘  └────────────────────────┘  └───────────────┘
 ```
 
 ## 2. Decisiones Técnicas (ADRs)
 
-### ADR-001: Next.js App Router
-Next.js 14 con el App Router se eligió como framework principal por:
-- Soporte nativo de i18n mediante `next-intl`.
-- API Routes integradas (backend ligero dentro del propio deploy).
+### ADR-001: Next.js 15 App Router
+Se utiliza Next.js 15 con el App Router como framework principal por:
+- Soporte nativo de i18n mediante `next-intl` adaptado a las firmas asíncronas de Next.js 15.
+- API Routes integradas para lógica server-side ligera.
 - Optimización de imágenes y rendimiento en Vercel Edge.
-- Nested layouts y route groups para organización de flujos.
+- Nested layouts y route groups para organización limpia.
 
 ### ADR-002: next-intl como biblioteca de i18n
 Se eligió `next-intl` en lugar de `react-i18next` porque:
-- Integración nativa con el App Router de Next.js 14.
+- Integración nativa con el App Router de Next.js 15.
 - Routing con segmento dinámico `[locale]` (es, en).
 - Carga perezosa (lazy load) de diccionarios JSON por idioma.
 - Soporte de TypeScript para claves de traducción.
@@ -64,61 +65,78 @@ Se elige Zustand en lugar de Redux por:
 ### ADR-005: Liquid Glass + Gold
 El estilo visual "Liquid Glass" (fondos translúcidos con blur) y acentos dorados (#D4AF37) se basan en:
 - `backdrop-filter: blur()` para efecto vidrio líquido.
-- Clases utilitarias y componentes personalizados en Tailwind config.
-- Componentes reutilizables en `src/components/ui`.
+- Clases utilitarias y componentes personalizados en la configuración de Tailwind CSS.
+- Componentes de diseño unificados expuestos en `src/components/ui`.
+
+### ADR-006: Prisma ORM con PostgreSQL
+Se seleccionó Prisma como ORM para la persistencia de datos (órdenes e ítems) porque:
+- Definición declarativa de esquemas de base de datos relacionales (`schema.prisma`).
+- Cliente autogenerado y tipado estático seguro.
+- Integración robusta con bases de datos PostgreSQL en la nube.
+
+### ADR-007: Skydropx para cotización de envíos
+Se integró Skydropx para el cálculo dinámico de tarifas de paquetería y tiempos de entrega en tiempo real, permitiendo cotizar con múltiples transportistas (FedEx, DHL, Estafeta) directamente en el formulario de Checkout.
 
 ## 3. Estructura de Carpetas
 
-La estructura del proyecto sigue el patrón estándar del Next.js App Router con una separación de responsabilidades clara:
+La estructura del proyecto sigue el patrón estándar de Next.js 15 App Router:
 
 ```
+prisma/                     # Archivos de configuración de la base de datos
+└── schema.prisma           # Esquema declarativo de base de datos (PostgreSQL)
 src/
 ├── app/                    # Rutas, layouts y API Routes (App Router)
 │   ├── api/                # Endpoints de API (Backend)
 │   │   ├── btcpay/         # Creación de facturas BTCPay Server
 │   │   ├── mercadopago/    # Creación de preferencias Mercado Pago
+│   │   ├── orders/         # Creación y guardado de órdenes con Prisma
+│   │   ├── shipping/       # Cálculo de tarifas de envíos con Skydropx
 │   │   ├── stripe/         # Sesiones de checkout Stripe fallback
-│   │   ├── webhook/btcpay/ # Callback de confirmación de BTCPay
-│   │   └── whatsapp/       # Proxy para envío de mensajes de WhatsApp
-│   ├── [locale]/           # Enrutamiento dinámico internacionalizado
-│   │   ├── (shop)/         # Páginas principales (cart, checkout, menu, order/[id])
-│   │   ├── layout.tsx      # Layout principal con next-intl y estilos globales
+│   │   ├── webhook/        # Webhooks de confirmación
+│   │   │   ├── btcpay/     # Confirmación de facturas Bitcoin
+│   │   │   └── mercadopago/# Confirmación de transacciones Mercado Pago
+│   │   └── whatsapp/       # Proxy para envío de notificaciones de WhatsApp
+│   ├── [locale]/           # Enrutamiento dinámico internacionalizado (i18n)
+│   │   ├── (shop)/         # Páginas de la tienda (about, cart, checkout, contact, menu, order/[id], wholesale)
+│   │   ├── design-kit/     # Página interna de control de diseño (QA)
+│   │   ├── layout.tsx      # Layout principal e inicializador de fuentes
 │   │   ├── not-found.tsx   # Página de error 404 localizada
 │   │   └── page.tsx        # Homepage del sitio
-│   └── global-error.tsx    # Manejo global de errores
+│   └── global-error.tsx    # Manejo global de excepciones
 ├── components/             # Componentes React
-│   ├── features/           # Componentes específicos del dominio (cart, delivery, landing, payment, product, receipt)
-│   ├── layout/             # Componentes de estructura global (Header, Footer, WhatsAppFloat)
-│   └── ui/                 # Componentes genéricos de diseño (Badge, Button, Card, Input, Modal)
+│   ├── features/           # Componentes de negocio (cart, checkout, delivery, landing, payment, product, promo, receipt)
+│   ├── layout/             # Componentes estructurales (Header, Footer, WhatsAppFloat, CartDrawerWrapper)
+│   └── ui/                 # Componentes genéricos de diseño (Badge, Button, Card, CartTester, Input, Modal)
+├── data/                   # Archivos de datos estáticos y JSONs (seasonal-promos.json)
 ├── hooks/                  # Hooks personalizados de React (useLocale, useMediaQuery)
 ├── lib/                    # Configuración de librerías, constantes y utilidades
 │   ├── i18n/               # Configuración del motor next-intl (request.ts, routing.ts)
-│   ├── constants.ts        # Reglas de negocio, zonas de envío y datos mock
+│   ├── constants.ts        # Reglas de negocio, catálogo de productos y zonas de envío
 │   ├── formatters.ts       # Formateadores de moneda, fecha y teléfono
+│   ├── prisma.ts           # Inicialización y singleton de PrismaClient
 │   └── utils.ts            # Utilidad helper clsx/tailwind-merge
 ├── messages/               # Diccionarios de traducción JSON (es.json, en.json)
-├── services/               # Clientes HTTP y SDKs para APIs externas
-│   ├── btcpay.service.ts   # Creación de facturas y validación de firma HMAC
-│   ├── mercadopago.service.ts # Preferencias, pagos y firmas de Mercado Pago
-│   └── whatsapp.service.ts # Clientes de envío de plantillas y textos de WhatsApp
+├── services/               # Clientes y SDKs para servicios de APIs externas
+│   ├── btcpay.service.ts   # Integración BTCPay Server API
+│   ├── mercadopago.service.ts # Integración Mercado Pago API
+│   ├── shipping.service.ts # Integración Skydropx API (envíos)
+│   └── whatsapp.service.ts # Integración WhatsApp Business Cloud API
 ├── store/                  # Estado global con Zustand (cartStore.ts)
 ├── styles/                 # Hojas de estilo globales y efectos especiales (globals.css, animations.css)
 ├── types/                  # Definiciones de tipos TypeScript (product.ts, order.ts, i18n.ts, zustand.d.ts)
-└── middleware.ts           # Middleware para redirección de locales y caché en el Edge
+└── middleware.ts           # Middleware para redirección de locales y control de caché
 ```
 
 | Carpeta | Responsabilidad |
 |---------|-----------------|
-| [src/app/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app) | Routing, layouts, API routes (App Router) |
-| [src/components/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/components) | Componentes UI reutilizables + features del dominio |
-| [src/lib/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/lib) | Utilidades puras, helpers, tipos compartidos |
-| [src/services/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services) | Clientes HTTP hacia APIs externas |
-| [src/store/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/store) | Estado global (Zustand) |
-| [src/hooks/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/hooks) | Custom hooks de React |
-| [src/types/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/types) | Definiciones de TypeScript |
-| [src/messages/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/messages) | Archivos JSON de traducción |
-| [src/styles/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/styles) | CSS global y animaciones |
-| [public/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/public) | Assets estáticos (fuentes, imágenes, iconos) |
+| [prisma/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/prisma) | Configuración y esquema de la base de datos (ORM) |
+| [src/app/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app) | Enrutamiento, layouts y controladores de API (Next.js App Router) |
+| [src/components/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/components) | UI reutilizable del diseño y componentes específicos de negocio |
+| [src/data/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/data) | Datos locales en formato JSON (promociones, etc.) |
+| [src/lib/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/lib) | Módulos de utilidades compartidas, formateadores y clientes (Prisma) |
+| [src/services/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services) | Lógica de llamada e integraciones con APIs externas (Stripe, BTCPay, MP, Skydropx) |
+| [src/store/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/store) | Almacenamiento de estado del lado del cliente persistido en local |
+| [src/types/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/types) | Modelos de TypeScript que aseguran el tipado de los datos |
 
 ## 4. Flujo de Compra (Checkout Flow)
 
@@ -129,30 +147,88 @@ src/
    │
 3. Hace click en "Checkout" → /[locale]/checkout
    │
-4. Selecciona método de pago:
+4. Escribe datos de dirección e inicia cotización de envíos:
+   └── POST /api/shipping/rates (Skydropx API) → Muestra opciones (FedEx, DHL, Estafeta) y recalcula total con envío
+   │
+5. Selecciona método de pago y envía orden:
    ├── Bitcoin (BTCPay Server)
-   │   - POST /api/btcpay/create-invoice
-   │   - Redirige a BTCPay checkout
-   │   - Webhook listening: /api/webhook/btcpay
+   │   - POST /api/orders (Prisma crea la orden con status "pending" en DB)
+   │   - Llama a createInvoice de BTCPay y actualiza invoiceId/providerOrderId
+   │   - Redirige a la URL de pago de BTCPay
+   │   - Webhook listening: POST /api/webhook/btcpay → actualiza status a "paid" en DB
    │
-   ├── Mercado Pago (Fiat)
-   │   - POST /api/mercadopago/create-preference
-   │   - Redirige a checkout de MP
+   └── Tarjeta / Mercado Pago (Fiat)
+       - POST /api/orders (Prisma crea la orden con status "pending" en DB)
+       - Llama a createPreference de Mercado Pago y actualiza preferenceId/providerOrderId
+       - Redirige a la URL de pago de Mercado Pago
+       - Webhook listening: POST /api/webhook/mercadopago → actualiza status a "paid" y txId en DB
    │
-   └── Stripe (fallback fiat)
-       - POST /api/stripe/create-checkout
-       - Redirige a checkout de Stripe
+6. Pago completado/confirmado → Redirección de retorno a /[locale]/order/[id]
    │
-5. Pago confirmado → redirección a /[locale]/order/[id]
+7. Se consulta la orden en la base de datos relacional mediante Prisma y se renderiza el recibo digital ([DigitalReceipt.tsx](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/components/features/receipt/DigitalReceipt.tsx))
    │
-6. Se muestra recibo digital + envío de WhatsApp
+8. Se envía la notificación del pedido a WhatsApp
    └── POST /api/whatsapp (Notificación al cliente y/o administrador)
-   └── (Nota: Integración de correo electrónico no está implementada)
 ```
 
 ## 5. Arquitectura de Datos
 
-### 5.1 Productos ([product.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/types/product.ts))
+### 5.1 Esquema de Base de Datos ([schema.prisma](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/prisma/schema.prisma))
+
+```prisma
+model Order {
+  id              String      @id @default(cuid())
+  subtotal        Int         // En centavos
+  tax             Int         @default(0)
+  deliveryFee     Int         // En centavos
+  total           Int         // En centavos
+  currency        String      @default("MXN")
+  discount        Int?
+
+  // Datos del cliente
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  customerAddress String
+
+  // Información de pago
+  paymentMethod   String      // "btc", "mercadopago", "stripe"
+  paymentStatus   String      @default("pending") // "pending", "paid", "failed", "refunded"
+  paymentProvider String?     // "btcpay", "mercadopago", "stripe"
+  providerOrderId String?     // ID de la orden en el proveedor externo
+  txId            String?     // Hash de transacción (BTC) o payment_id (MP)
+  invoiceId       String?     // ID de la factura en BTCPay
+
+  // Información de envío
+  deliveryZone    String
+  deliveryEta     String
+  deliveryAddress String
+
+  // Metadata
+  locale          String      @default("es")
+  notes           String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id          String  @id @default(cuid())
+  orderId     String
+  productId   String
+  name        String
+  description String
+  price       Int     // En centavos
+  quantity    Int
+  currency    String  @default("MXN")
+  image       String?
+
+  order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+```
+
+### 5.2 Productos ([product.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/types/product.ts))
 
 ```ts
 export interface Product {
@@ -160,7 +236,7 @@ export interface Product {
   slug: string;
   name: string;
   description: string;
-  price: number;        // Precio en centavos (ej. 25000 = $250.00 MXN)
+  price: number;        // Precio en centavos (ej. 18500 = $185.00 MXN)
   currency: string;     // "MXN", "USD", "BTC"
   images: string[];
   category: string;
@@ -197,7 +273,7 @@ export interface Category {
 }
 ```
 
-### 5.2 Órdenes ([order.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/types/order.ts))
+### 5.3 Órdenes ([order.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/types/order.ts))
 
 ```ts
 import { type Locale } from "@/lib/i18n/routing";
@@ -262,13 +338,13 @@ export interface Order {
   customer: CustomerInfo;
   delivery: DeliveryInfo;
   locale: Locale;
-  createdAt: string; // ISO String para serialización fácil
-  updatedAt: string; // ISO String para serialización fácil
+  createdAt: string;
+  updatedAt: string;
   notes?: string;
 }
 ```
 
-### 5.3 Estado del Carrito ([cartStore.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/store/cartStore.ts))
+### 5.4 Estado del Carrito ([cartStore.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/store/cartStore.ts))
 
 ```ts
 export interface CartItem extends Omit<Product, "id"> {
@@ -296,17 +372,32 @@ interface CartState {
 }
 ```
 
+### 5.5 Promociones Temporales ([seasonal-promos.json](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/data/seasonal-promos.json))
+
+```ts
+export interface SeasonalPromo {
+  id: string;
+  active: boolean;
+  title: string;
+  subtitle: string;
+  image: string;
+  ctaText: string;
+  ctaLink: string;
+}
+```
+
 ## 6. Integraciones Externas
 
 | Servicio | Responsabilidad | Archivo de Cliente / Endpoint | Métodos clave |
 |----------|-----------------|-------------------------------|---------------|
 | **BTCPay Server** | Generación de facturas Bitcoin (on-chain / lightning), verificación de firmas y webhooks de cobro. | [btcpay.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/btcpay.service.ts)<br>Webhook: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/webhook/btcpay/route.ts) | `createInvoice`, `verifyBtcpaySignature`, `getInvoiceStatus`, `updateOrderFromBtcpay` |
-| **Mercado Pago** | Generación de checkout preferences, validación de firmas y transacciones fiat (MXN). | [mercadopago.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/mercadopago.service.ts) | `createPreference`, `getPaymentStatus`, `verifyWebhookSignature` |
+| **Mercado Pago** | Generación de checkout preferences, validación de firmas y transacciones fiat (MXN). | [mercadopago.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/mercadopago.service.ts)<br>Webhook: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/webhook/mercadopago/route.ts) | `createPreference`, `getPaymentStatus`, `verifyWebhookSignature` |
+| **Skydropx** | Cotización y cálculo dinámico de tarifas de envío y paquetería multicarrier. | [shipping.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/shipping.service.ts)<br>Cálculo API: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/shipping/rates/route.ts) | `getShippingRates` |
 | **WhatsApp Business API** | Envío de confirmaciones de órdenes en texto plano al cliente y notificaciones internas al admin. | [whatsapp.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/whatsapp.service.ts)<br>Proxy API: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/whatsapp/route.ts) | `sendWhatsAppMessage`, `sendOrderConfirmation` |
 | **Stripe** | Procesamiento de checkout fallback para pagos tradicionales (tarjetas de crédito/débito). | Ruta API: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/stripe/create-checkout/route.ts) | Utiliza directamente el cliente `stripe` de NPM. |
 
 > [!NOTE]
-> Las firmas y firmas HMAC de los webhooks están implementadas para **BTCPay Server** y **Mercado Pago**, pero solo existe un route handler activo para el webhook de BTCPay Server (`/api/webhook/btcpay`). Mercado Pago y Stripe no tienen controladores de webhook activos en `/api/webhook`.
+> Las firmas y firmas HMAC de los webhooks están implementadas para **BTCPay Server** y **Mercado Pago**, y existen controladores de ruta (`route.ts`) activos para ambos webhooks (`/api/webhook/btcpay` y `/api/webhook/mercadopago`). Solo Stripe carece de controlador de webhook en `/api/webhook`.
 
 ## 7. Convenciones de Código
 

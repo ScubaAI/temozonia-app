@@ -220,5 +220,88 @@
       "subtitle": "Wholesale and retail. Personalized service for restaurants, hotels and the general public.",
       "button": "Place your order now"
     }
+  },
+  "wholesale": {
+    "hero": {
+      "kicker": "Business Partners",
+      "title": "Grow your business with the flavor of Temozón",
+      "subtitle": "Special wholesale prices for butcher shops, restaurants, hotels, and stores. 100% Yucatecan artisanal quality that your customers will love."
+    },
+    "benefits": {
+      "title": "Why partner with Temozonia?",
+      "margin": {
+        "title": "Profit Margin",
+        "desc": "Wholesale prices designed to make your business highly profitable."
+      },
+      "supply": {
+        "title": "Constant Supply",
+        "desc": "Guaranteed daily production. You will never run out of product during peak seasons."
+      },
+      "quality": {
+        "title": "Artisanal Quality",
+        "desc": "A premium product that sells itself. The traditional smoked flavor of Temozón."
+      },
+      "delivery": {
+        "title": "Reliable Delivery",
+        "desc": "Punctual logistics in Mérida and surrounding areas. Your order arrives fresh and on time."
+      }
+    },
+    "form": {
+      "title": "Request your wholesale price list",
+      "subtitle": "Fill out the form and we will contact you in less than 24 hours with a custom proposal.",
+      "businessName": "Business Name",
+      "contactName": "Contact Name",
+      "phone": "Phone / WhatsApp",
+      "businessType": "Business Type",
+      "businessTypePlaceholder": "Select an option",
+      "businessTypes": {
+        "carniceria": "Butcher Shop / Market",
+        "restaurante": "Restaurant / Hotel",
+        "tienda": "Grocery Store",
+        "distribuidor": "Independent Distributor",
+        "otro": "Other"
+      },
+      "products": "Products of interest",
+      "productsPlaceholder": "Select products",
+      "productOptions": {
+        "carne": "Smoked Meat",
+        "longaniza": "Artisanal Sausage",
+        "costillas": "Smoked Ribs",
+        "chorizo": "Chorizo de Relleno",
+        "pocchuc": "Poc Chuc"
+      },
+      "volume": "Estimated weekly volume (kg)",
+      "comments": "Comments or specific needs",
+      "submit": "Submit Request",
+      "submitting": "Sending...",
+      "success": {
+        "title": "Request Sent!",
+        "desc": "Thank you for your interest. A Temozonia advisor will contact you soon via WhatsApp or email."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "kicker": "We are here to serve you",
+      "title": "Visit us in Mérida",
+      "subtitle": "Come and experience the authentic flavor of Temozón. We are ready to serve you with the warmth and tradition that characterizes us."
+    },
+    "info": {
+      "address_title": "Our Location",
+      "address": "Calle 12 #182, Fracc. del Parque, Caucel, Mérida, Yucatán, Mexico. ZIP 97300",
+      "hours_title": "Business Hours",
+      "hours": "Monday to Saturday: 8:00 AM - 6:00 PM\nSunday: 9:00 AM - 2:00 PM",
+      "phone": "+52 999 491 8221",
+      "email": "temozoniacarnesahumadas@gmail.com"
+    },
+    "map": {
+      "directions": "Get Directions",
+      "title": "Find us easily"
+    },
+    "cta": {
+      "title": "Need a special or wholesale order?",
+      "subtitle": "Message us directly and an advisor will assist you immediately with a custom proposal.",
+      "button": "Send WhatsApp Message"
+    }
   }
 }

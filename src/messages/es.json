@@ -232,5 +232,92 @@
       "subtitle": "Mayoreo y menudeo. Atención personalizada para restaurantes, hoteles y público en general.",
       "button": "Haz tu pedido ahora"
     }
+  },
+  "wholesale": {
+    "hero": {
+      "kicker": "Aliados Comerciales",
+      "title": "Haz crecer tu negocio con el sabor de Temozón",
+      "subtitle": "Precios especiales de mayoreo para carnicerías, restaurantes, hoteles y tiendas. Calidad artesanal 100% yucateca que tus clientes repetirán."
+    },
+    "benefits": {
+      "title": "¿Por qué ser socio de Temozonia?",
+      "margin": {
+        "title": "Margen de Ganancia",
+        "desc": "Precios de mayoreo diseñados para que tu negocio sea altamente rentable."
+      },
+      "supply": {
+        "title": "Suministro Constante",
+        "desc": "Producción diaria garantizada. Nunca te quedarás sin producto en temporada alta."
+      },
+      "quality": {
+        "title": "Calidad Artesanal",
+        "desc": "Un producto premium que se vende solo. El sabor ahumado tradicional de Temozón."
+      },
+      "delivery": {
+        "title": "Entrega Confiable",
+        "desc": "Logística puntual en Mérida y alrededores. Tu pedido llega fresco y a tiempo."
+      }
+    },
+    "form": {
+      "title": "Solicita tu lista de precios de mayoreo",
+      "subtitle": "Completa el formulario y te contactaremos en menos de 24 horas con una propuesta a tu medida.",
+      "businessName": "Nombre del Negocio",
+      "contactName": "Nombre de Contacto",
+      "phone": "Teléfono / WhatsApp",
+      "businessType": "Tipo de Negocio",
+      "businessTypePlaceholder": "Selecciona una opción",
+      "businessTypes": {
+        "carniceria": "Carnicería / Mercado",
+        "restaurante": "Restaurante / Hotel",
+        "tienda": "Tienda de Abarrotes",
+        "distribuidor": "Distribuidor Independiente",
+        "otro": "Otro"
+      },
+      "products": "Productos de mayor interés",
+      "productsPlaceholder": "Selecciona los productos",
+      "productOptions": {
+        "carne": "Carne Ahumada",
+        "longaniza": "Longaniza Artesanal",
+        "costillas": "Costillas Ahumadas",
+        "chorizo": "Chorizo de Relleno",
+        "pocchuc": "Poc Chuc"
+      },
+      "volume": "Volumen estimado semanal (kg)",
+      "comments": "Comentarios o necesidades específicas",
+      "submit": "Enviar Solicitud",
+      "submitting": "Enviando...",
+      "success": {
+        "title": "¡Solicitud Enviada!",
+        "desc": "Gracias por tu interés. Un asesor de Temozonia se pondrá en contacto contigo muy pronto vía WhatsApp o correo."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "kicker": "Estamos para servirte",
+      "title": "Visítanos en Mérida",
+      "subtitle": "Ven a conocer el auténtico sabor de Temozón. Estamos listos para atenderte con la calidez y tradición que nos caracteriza."
+    },
+    "info": {
+      "address_title": "Nuestra Ubicación",
+      "address": "Calle 12 #182, Fracc. del Parque, Caucel, Mérida, Yucatán, México. CP 97300",
+      "hours_title": "Horario de Atención",
+      "hours": "Lunes a Sábado: 8:00 AM - 6:00 PM\nDomingo: 9:00 AM - 2:00 PM",
+      "phone": "999 491 8221",
+      "email": "temozoniacarnesahumadas@gmail.com"
+    },
+    "map": {
+      "directions": "Cómo llegar",
+      "title": "Encuéntranos fácilmente"
+    },
+    "cta": {
+      "title": "¿Necesitas un pedido especial o de mayoreo?",
+      "subtitle": "Escríbenos directamente y un asesor te atenderá de inmediato con una propuesta a tu medida.",
+      "button": "Enviar mensaje por WhatsApp"
+    }
+  },
+  "promos": {
+    "title": "Promociones de Temporada",
+    "subtitle": "Ofertas especiales y paquetes para celebrar contigo."
   }
 }

@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { Bitcoin, Zap, Wheat, ShieldCheck, Flame } from "lucide-react";
 import type { Locale } from "@/lib/i18n/routing";
+import SeasonalPromoCarousel from "@/components/features/promo/SeasonalPromoCarousel";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -206,6 +207,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </div>
       </section>
+
+      {/* ==========================================
+           SEASONAL PROMOS CAROUSEL
+      ========================================== */}
+      <SeasonalPromoCarousel />
 
       {/* ==========================================
            3. VALUE PROPOSITION (FEATURES)
