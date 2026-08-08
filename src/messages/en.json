@@ -99,8 +99,28 @@
     "receipt": "Digital receipt"
   },
   "footer": {
-    "tagline": "Tradition worth sharing",
-    "rights": "All rights reserved."
+    "tagline": "Quality, tradition and flavor in every bite.",
+    "contact": {
+      "title": "Contact Us",
+      "address": "Calle 12 #182, Caucel, Mérida, Yucatán, Mexico. ZIP 97300",
+      "phone": "999 491 8221",
+      "email": "temozoniacarnesahumadas@gmail.com",
+      "whatsapp": "Message us on WhatsApp"
+    },
+    "links": {
+      "title": "Navigation",
+      "home": "Home",
+      "products": "Products",
+      "wholesale": "Wholesale",
+      "about": "About Us"
+    },
+    "social": {
+      "title": "Follow Us",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    },
+    "copyright": "All rights reserved.",
+    "designedBy": "Platform developed by"
   },
   "delivery": {
     "zones": {

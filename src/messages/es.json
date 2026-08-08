@@ -14,10 +14,13 @@
   },
   "navigation": {
     "home": "Inicio",
-    "menu": "Catálogo",
+    "products": "Productos",
+    "about": "Conócenos",
+    "process": "Proceso",
+    "wholesale": "Mayoreo",
+    "contact": "Contacto",
     "cart": "Carrito",
-    "checkout": "Pagar",
-    "order": "Mi pedido"
+    "checkout": "Pagar"
   },
   "home": {
     "heroKicker": "Temozón, Yucatán",
@@ -99,8 +102,28 @@
     "receipt": "Recibo digital"
   },
   "footer": {
-    "tagline": "Tradición que se comparte",
-    "rights": "Todos los derechos reservados."
+    "tagline": "Calidad, tradición y sabor en cada bocado.",
+    "contact": {
+      "title": "Contáctanos",
+      "address": "Calle 12 #182, Caucel, Mérida, Yucatán, México. CP 97300",
+      "phone": "999 491 8221",
+      "email": "temozoniacarnesahumadas@gmail.com",
+      "whatsapp": "Escríbenos por WhatsApp"
+    },
+    "links": {
+      "title": "Navegación",
+      "home": "Inicio",
+      "products": "Productos",
+      "wholesale": "Mayoreo",
+      "about": "Conócenos"
+    },
+    "social": {
+      "title": "Síguenos",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    },
+    "copyright": "Todos los derechos reservados.",
+    "designedBy": "Plataforma desarrollada por"
   },
   "delivery": {
     "zones": {
