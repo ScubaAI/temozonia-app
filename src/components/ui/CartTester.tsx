@@ -5,7 +5,7 @@ import { PRODUCTS } from "@/lib/constants";
 import { formatCurrency } from "@/lib/formatters";
 
 export function CartTester() {
-  const { _items, addItem, getTotal, getItemCount } = useCartStore();
+  const { addItem, getTotal, getItemCount } = useCartStore();
   const sample = PRODUCTS[0];
 
   return (
