@@ -23,7 +23,7 @@
     "heroKicker": "Temozón, Yucatán",
     "heroTitle": "Temozonia Smoked Meats",
     "heroSubtitle": "We make smoked meat, artisanal sausage, smoked ribs and other 100% handmade specialties. Quality, tradition and flavor in every bite.",
-    "heroLocation": "Church of Temozón — Birthplace of our tradition",
+    "heroLocation": "Caucel, Mérida — Birthplace of our tradition",
     "products": {
       "meat": "Smoked Meat",
       "sausage": "Artisanal Sausage",
@@ -31,6 +31,8 @@
     },
     "ctaCatalog": "View products",
     "ctaBitcoin": "Pay with Bitcoin",
+    "heroPayments": "Secure payment methods",
+    "heroTransfer": "Bank Transfer",
     "features": {
       "title": "Why choose us?",
       "artisanal": {
@@ -310,6 +312,14 @@
       "subtitle": "Message us directly and an advisor will assist you immediately with a custom proposal.",
       "button": "Send WhatsApp Message"
     }
+  },
+  "promos": {
+    "ariaLabel": "Seasonal promotions carousel",
+    "kicker": "Limited Edition",
+    "title": "Seasonal Promotions",
+    "subtitle": "Special offers and packages designed to celebrate with you.",
+    "prevAria": "View previous promotion",
+    "nextAria": "View next promotion"
   },
   "partners": {
     "title": "Bitcoin-Friendly Businesses",

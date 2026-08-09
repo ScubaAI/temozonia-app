@@ -26,7 +26,7 @@
     "heroKicker": "Temozón, Yucatán",
     "heroTitle": "Temozonia Carnes Ahumadas",
     "heroSubtitle": "Elaboramos carne, longaniza, costillas ahumadas y otras especialidades 100% artesanales. Calidad, tradición y sabor en cada bocado.",
-    "heroLocation": "Iglesia de Temozón — Cuna de nuestra tradición",
+    "heroLocation": "Caucel, Mérida — Cuna de nuestra tradición",
     "products": {
       "meat": "Carne Ahumada",
       "sausage": "Longaniza Artesanal",
@@ -34,6 +34,8 @@
     },
     "ctaCatalog": "Ver productos",
     "ctaBitcoin": "Pagar con Bitcoin",
+    "heroPayments": "Métodos de pago seguros",
+    "heroTransfer": "Transferencia",
     "features": {
       "title": "¿Por qué elegirnos?",
       "artisanal": {
@@ -324,8 +326,12 @@
     }
   },
   "promos": {
+    "ariaLabel": "Carrusel de promociones de temporada",
+    "kicker": "Edición Limitada",
     "title": "Promociones de Temporada",
-    "subtitle": "Ofertas especiales y paquetes para celebrar contigo."
+    "subtitle": "Ofertas especiales y paquetes diseñados para celebrar contigo.",
+    "prevAria": "Ver promoción anterior",
+    "nextAria": "Ver siguiente promoción"
   },
   "partners": {
     "title": "Comercios Bitcoin-Friendly",
