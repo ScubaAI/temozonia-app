@@ -1,13 +1,13 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Camera, Users, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, Camera, Users } from "lucide-react";
+import { BullBitcoinWalletButton } from "./BullBitcoinWalletButton";
 
 export function Footer({ locale }: { locale: string }) {
   const t = useTranslations("footer");
 
   return (
     <footer className="bg-dark-wood text-cream border-t-2 border-gold/30">
-      {/* Textura de papel sutil (heredada del design system) */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none" 
         style={{
@@ -16,9 +16,8 @@ export function Footer({ locale }: { locale: string }) {
       />
 
       <div className="relative mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           
-          {/* Columna 1: Marca y Ubicación */}
           <div className="space-y-6">
             <div>
               <h3 className="font-script text-4xl italic text-gold">Temozonia</h3>
@@ -37,7 +36,6 @@ export function Footer({ locale }: { locale: string }) {
             </div>
           </div>
 
-          {/* Columna 2: Navegación */}
           <div className="space-y-4">
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gold">
               {t("links.title")}
@@ -70,7 +68,6 @@ export function Footer({ locale }: { locale: string }) {
             </ul>
           </div>
 
-          {/* Columna 3: Contacto Directo */}
           <div className="space-y-4">
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gold">
               {t("contact.title")}
@@ -106,7 +103,6 @@ export function Footer({ locale }: { locale: string }) {
             </ul>
           </div>
 
-          {/* Columna 4: Redes Sociales */}
           <div className="space-y-4">
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gold">
               {t("social.title")}
@@ -135,14 +131,22 @@ export function Footer({ locale }: { locale: string }) {
               Pagos seguros con <span className="text-gold font-medium">Bitcoin Lightning</span> y métodos tradicionales.
             </p>
           </div>
+
+          <div className="space-y-4">
+            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gold">
+              {t("wallet.description")}
+            </h4>
+            <BullBitcoinWalletButton />
+            <p className="font-body text-xs text-cream/50 leading-relaxed">
+              {t("wallet.partnerText")}
+            </p>
+          </div>
         </div>
 
-        {/* Divisor Dorado */}
         <div className="gold-divider my-12 text-gold/40">
           <span aria-hidden>◆</span>
         </div>
 
-        {/* Barra Inferior: Copyright + Crédito AceptaBitcoin */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 pt-4">
           <p className="font-body text-xs text-cream/40 text-center md:text-left">
             © {new Date().getFullYear()} Temozonia Carnes Ahumadas. {t("copyright")}
@@ -159,7 +163,6 @@ export function Footer({ locale }: { locale: string }) {
               <span className="text-gold font-bold text-xs">AceptaBitcoin.org</span>
             </span>
             
-            {/* Contenedor del SVG para asegurar legibilidad y proporción */}
             <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 transition-transform group-hover:scale-105 duration-300">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 

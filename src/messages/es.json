@@ -132,7 +132,14 @@
       "facebook": "Facebook"
     },
     "copyright": "Todos los derechos reservados.",
-    "designedBy": "Plataforma desarrollada por"
+    "designedBy": "Plataforma desarrollada por",
+    "wallet": {
+      "label": "¿Sin Bitcoin? Descarga la Wallet",
+      "appName": "Bull Bitcoin",
+      "network": "Lightning",
+      "description": "Wallet Partner Oficial",
+      "partnerText": "Nuestro socio oficial para pagos Bitcoin. Descarga la wallet y únete a la revolución financiera."
+    }
   },
   "delivery": {
     "zones": {
