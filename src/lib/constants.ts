@@ -36,6 +36,25 @@ export const BUSINESS = {
   },
 };
 
+export const BRANCHES = [
+  {
+    id: "caucel",
+    locality: "Caucel Pueblo",
+    address: "Av. Principal Calle 23 entre 12 y 14 (Esquina)",
+    phoneDisplay: "999 491 8221",
+    phoneRaw: "+529994918221",
+    mapsQuery: "Temozonia+Carnes+Ahumadas+Caucel+Merida",
+  },
+  {
+    id: "parque",
+    locality: "Fraccionamiento del Parque",
+    address: "Calle 16 entre 55 y 57 #657",
+    phoneDisplay: "999 231 0619",
+    phoneRaw: "+529992310619",
+    mapsQuery: "Temozonia+Fraccionamiento+del+Parque+Merida",
+  },
+] as const;
+
 // ============================================
 // 2. WHATSAPP (Mensajes dinámicos por idioma)
 // ============================================

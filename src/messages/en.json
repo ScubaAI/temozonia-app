@@ -278,27 +278,23 @@
   },
   "wholesale": {
     "hero": {
-      "kicker": "Business Partners",
-      "title": "Grow your business with the flavor of Temozón",
-      "subtitle": "Special wholesale prices for butcher shops, restaurants, hotels, and stores. 100% Yucatecan artisanal quality that your customers will love."
+      "kicker": "Wholesale · Restaurants & events",
+      "title": "Grow your business",
+      "subtitle": "With the flavor of Temozonia: 100% traditional Yucatecan quality, wood-smoked, for restaurants, hotels and special events."
     },
     "benefits": {
       "title": "Why partner with Temozonia?",
-      "margin": {
-        "title": "Profit Margin",
-        "desc": "Wholesale prices designed to make your business highly profitable."
-      },
       "supply": {
-        "title": "Constant Supply",
-        "desc": "Guaranteed daily production. You will never run out of product during peak seasons."
+        "title": "Guaranteed supply",
+        "desc": "Steady production and scheduled orders so you never run out of stock."
       },
       "quality": {
-        "title": "Artisanal Quality",
-        "desc": "A premium product that sells itself. The traditional smoked flavor of Temozón."
+        "title": "100% traditional Yucatecan quality",
+        "desc": "Wood-smoked with family recipes. Authentic flavor your customers will recognize."
       },
       "delivery": {
-        "title": "Reliable Delivery",
-        "desc": "Punctual logistics in Mérida and surrounding areas. Your order arrives fresh and on time."
+        "title": "Scheduled delivery",
+        "desc": "We coordinate deliveries across Mérida and the metro area for your daily operation."
       }
     },
     "form": {

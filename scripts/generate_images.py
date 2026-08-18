@@ -383,7 +383,7 @@ make_product(root / "prod-costilla.jpg", "Costilla Ahumada", "costilla")
 make_product(root / "prod-longaniza.jpg", "Longaniza Tradicional", "longaniza")
 make_og(root / "og-temozonia.jpg")
 
-print("\n✅ Imágenes creadas en", root)
+print("\n[OK] Imagenes creadas en", root)
 for p in sorted(root.iterdir()):
     size_kb = p.stat().st_size / 1024
-    print(f"  📸 {p.name} ({size_kb:.1f} KB)")
+    print(f"  [IMG] {p.name} ({size_kb:.1f} KB)")

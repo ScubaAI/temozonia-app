@@ -187,126 +187,63 @@
     "backHome": "Volver al inicio"
   },
   "about": {
-    "heroTitle": "Temozón, cuna de las carnes ahumadas",
-    "hero": {
-      "kicker": "Lugar del Remolino",
-      "title": "Temozón, cuna de las carnes ahumadas",
-      "heroTitle": "Temozón, cuna de las carnes ahumadas",
-      "subtitle": "Desde 1969, nuestra familia ha preservado la tradición yucateca del ahumado artesanal. Recetas secretas transmitidas de generación en generación, cocidas con carbón y paciencia."
+    "metaTitle": "Temozonia — Tradición yucateca en carnes ahumadas",
+    "metaDescription": "Conoce Temozonia: carnes cocidas sobre la leña, especias y paciencia. Calidad 100% tradicional yucateca en Mérida.",
+    "heroAlt": "Ahumador de Temozonia con humo de leña",
+    "heroBadge": "Ahumado con leña · Desde 2013",
+    "heroKicker": "Temozón, Yucatán",
+    "heroTitle": "Tradicional",
+    "heroSubtitle": "Carnes cocidas sobre la leña, especias y paciencia. Calidad 100% tradicional yucateca.",
+    "pillarsEyebrow": "Nuestra esencia",
+    "pillarsTitle": "Leña, especias y paciencia",
+    "pillars": {
+      "lena": { "title": "Leña", "description": "Ahumado lento con leña selecta, como se ha hecho siempre en Yucatán." },
+      "especias": { "title": "Especias", "description": "Recetas de familia con especias de la región, sin atajos." },
+      "paciencia": { "title": "Paciencia", "description": "Horas de fuego paciente para lograr textura y sabor auténticos." }
     },
-    "metaTitle": "Sobre Nosotros | Temozonia",
-    "metaDescription": "Descubre la historia de Temozonia, tradición yucateca en carnes ahumadas artesanales.",
-    "historicTemples": "Templos Históricos",
-    "ekBalam": "Ek Balam",
-    "ekBalamDescription": "Inspirados en la majestuosidad de Ek Balam, honramos las tradiciones ancestrales del ahumado yucateco.",
-    "visitTemozon": "Visítanos en Temozón",
-    "visitTemozonSubtitle": "Conoce nuestra casa y prueba nuestros productos",
-    "traditionTitle": "Tradición Viva",
-    "traditionDescription": "Cada generación hereda el fuego, el tiempo y el secreto del ahumado. En Temozón no cocinamos carne: conservamos una forma de vida que resiste desde hace más de 50 años.",
-    "history": {
-      "title": "Nuestra Historia",
-      "section1": {
-        "subtitle": "El Origen",
-        "text": "Temozón, que en maya significa 'lugar del remolino', es una comunidad apacible del oriente yucateco. Hace más de cinco décadas, hacia 1969, varios oriundos de esta villa comenzaron a experimentar con técnicas de ahumado que hasta el día de hoy nos distinguen."
-      },
-      "section2": {
-        "subtitle": "Tradición Familiar",
-        "text": "Lo que comenzó como un emprendimiento familiar, hoy es un legado que preservamos con orgullo. Más de 18 carnicerías en la calle principal de Temozón mantienen viva esta tradición, cada una con su propia identidad pero compartiendo el mismo compromiso con la calidad."
-      },
-      "section3": {
-        "subtitle": "El Secreto",
-        "text": "Existen recetas que ninguna familia revela. El marinado perfecto, los ingredientes exactos, el tiempo preciso de cocción... Estos son secretos que guardamos celosamente y que hacen único cada bocado de nuestras carnes ahumadas."
-      }
+    "specialtiesEyebrow": "Lo que nos distingue",
+    "specialtiesTitle": "Especialidades de la casa",
+    "specialties": {
+      "carne": { "name": "Carne Ahumada Tradicional", "description": "Color caoba profundo y textura jugosa. Pieza completa o al peso." },
+      "costilla": { "name": "Costilla Ahumada Tradicional", "description": "Adobo secreto de la casa; se deshace del hueso." },
+      "longanizaEspecial": { "name": "Longaniza Tradicional \"Especial\"", "description": "Embutida a mano con la receta familiar." },
+      "longanizaNegra": { "name": "Longaniza Negra", "description": "Carácter robusto y ahumado intenso para paladares exigentes." },
+      "servicio": { "name": "Servicio de Ahumado", "description": "Tú aportas la pieza, nosotros ponemos el humo: pavo, pollo, conejo y lomo." }
     },
-    "process": {
-      "title": "El Proceso Artesanal",
-      "steps": {
-        "selection": {
-          "title": "Selección",
-          "desc": "Cada mañana, desde muy temprano, seleccionamos la carne más fresca de proveedores locales de confianza."
-        },
-        "marinade": {
-          "title": "Marinado Secreto",
-          "desc": "Preparamos la carne con nuestra receta familiar secreta, una combinación perfecta de especias y sabores yucatecos."
-        },
-        "smoking": {
-          "title": "Ahumado con Carbón",
-          "desc": "Cocemos lentamente sobre carbón, permitiendo que el humo impregne cada fibra de carne con un sabor inigualable."
-        },
-        "quality": {
-          "title": "Control de Calidad",
-          "desc": "Cada pieza es revisada cuidadosamente para asegurar que cumpla con nuestros más altos estándares."
-        }
-      }
+    "serviceBadge": "Servicio exclusivo",
+    "homeQuote": "Yucatán es nuestro hogar",
+    "homeQuoteText": "Nacimos en Temozón y crecimos entre el humo de la leña y los sabores de la región. Cada pieza que servimos lleva el orgullo de nuestra tierra.",
+    "branchesEyebrow": "Visítanos",
+    "branchesTitle": "Nuestras sucursales",
+    "callToOrder": "Encargos al",
+    "schedule": {
+      "caucel": "Mar - Dom: 10:30 am - 4:30 pm",
+      "parque": "Mar - Vie: 1:00 pm - 5:30 pm · Sáb - Dom: 12:30 pm - 4:30 pm"
     },
-    "values": {
-      "title": "Nuestros Valores",
-      "items": {
-        "tradition": {
-          "title": "Tradición",
-          "desc": "Honramos las técnicas ancestrales de ahumado que nos heredaron nuestros abuelos."
-        },
-        "quality": {
-          "title": "Calidad",
-          "desc": "Solo utilizamos ingredientes frescos y de la más alta calidad."
-        },
-        "family": {
-          "title": "Familia",
-          "desc": "Somos un negocio familiar donde cada miembro aporta su pasión y dedicación."
-        },
-        "community": {
-          "title": "Comunidad",
-          "desc": "Temozón es nuestro hogar. Apoyamos el comercio local y la economía de nuestra región."
-        }
-      }
-    },
-    "heritage": {
-      "title": "Patrimonio Cultural",
-      "subtitle": "Más que carnes ahumadas, somos guardianes de una tradición",
-      "church": "Conoce la Iglesia de San Antonio de Padua y el templo de San Román, edificados en el siglo XVIII, testigos históricos de nuestra comunidad.",
-      "ekbalam": "A solo 14 kilómetros de Temozón se encuentra Ek Balam, majestuoso sitio arqueológico maya que forma parte de nuestra identidad cultural.",
-      "cta": "Visítanos en Temozón"
-    },
-    "products": {
-      "title": "Nuestras Especialidades",
-      "items": [
-        "Carnes Ahumadas Tradicionales",
-        "Longaniza Artesanal",
-        "Chorizo de Relleno",
-        "Poc Chuc Yucateco",
-        "Embutidos Especiales",
-        "Costillas Ahumadas"
-      ]
-    },
-    "cta": {
-      "title": "¿Listo para probar el auténtico sabor de Temozón?",
-      "subtitle": "Mayoreo y menudeo. Atención personalizada para restaurantes, hoteles y público en general.",
-      "button": "Haz tu pedido ahora"
-    }
+    "getDirections": "Cómo llegar",
+    "ctaTitle": "¿Listo para probar el auténtico sabor de Temozonia?",
+    "ctaCatalog": "Ver catálogo",
+    "ctaWhatsApp": "Pedir por WhatsApp"
   },
   "wholesale": {
     "hero": {
-      "kicker": "Aliados Comerciales",
-      "title": "Haz crecer tu negocio con el sabor de Temozón",
-      "subtitle": "Precios especiales de mayoreo para carnicerías, restaurantes, hoteles y tiendas. Calidad artesanal 100% yucateca que tus clientes repetirán."
+      "kicker": "Mayoreo · Restaurantes y eventos",
+      "title": "Haz crecer tu negocio",
+      "subtitle": "Con el sabor de Temozonia: calidad 100% tradicional yucateca, ahumada con leña, para restaurantes, hoteles y eventos especiales."
     },
     "benefits": {
-      "title": "¿Por qué ser socio de Temozonia?",
-      "margin": {
-        "title": "Margen de Ganancia",
-        "desc": "Precios de mayoreo diseñados para que tu negocio sea altamente rentable."
-      },
+      "title": "¿Por qué ser socio Temozonia?",
       "supply": {
-        "title": "Suministro Constante",
-        "desc": "Producción diaria garantizada. Nunca te quedarás sin producto en temporada alta."
+        "title": "Abasto garantizado",
+        "desc": "Producción constante y pedidos programados para que nunca te quedes sin inventario."
       },
       "quality": {
-        "title": "Calidad Artesanal",
-        "desc": "Un producto premium que se vende solo. El sabor ahumado tradicional de Temozón."
+        "title": "Calidad 100% tradicional yucateca",
+        "desc": "Ahumado con leña y recetas de familia. Sabor auténtico que tus clientes van a reconocer."
       },
       "delivery": {
-        "title": "Entrega Confiable",
-        "desc": "Logística puntual en Mérida y alrededores. Tu pedido llega fresco y a tiempo."
+        "title": "Entrega programada",
+        "desc": "Coordinamos entregas en Mérida y zona metropolitana para tu operación diaria."
       }
     },
     "form": {
