@@ -17,7 +17,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { CartDrawerWrapper } from "@/components/layout/CartDrawerWrapper";
-import BitcoinPartnersMarquee from "@/components/features/partners/BitcoinPartnersMarquee";
+import { BitcoinPartnersMarquee } from "@/components/features/landing/BitcoinPartnersMarquee";
 
 // Fuentes
 const fontDisplay = Playfair_Display({

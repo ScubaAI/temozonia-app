@@ -1,42 +1,36 @@
-[
-  {
-    "id": "la-bianca",
-    "name": "La Bianca",
-    "description": "Restaurante italiano gourmet",
-    "logo": "/images/partners/la-bianca.svg",
-    "url": "https://www.labianca.com.mx",
-    "location": "CDMX"
-  },
-  {
-    "id": "bitcoin-embassy",
-    "name": "Bitcoin Embassy",
-    "description": "Centro cultural Bitcoin",
-    "logo": "/images/partners/bitcoin-embassy.svg",
-    "url": "https://bitcoinembassy.mx",
-    "location": "CDMX"
-  },
-  {
-    "id": "carnes-puebla",
-    "name": "Carnes de Puebla",
-    "description": "Carnes ahumadas artesanales",
-    "logo": "/images/partners/carnes-puebla.svg",
-    "url": "https://example.com",
-    "location": "Puebla"
-  },
-  {
-    "id": "temozonia",
-    "name": "Temozonia",
-    "description": "Carnes ahumadas de Yucatán",
-    "logo": "/images/partners/temozonia.svg",
-    "url": "https://temozonia.com",
-    "location": "Mérida, Yucatán"
-  },
-  {
-    "id": "orange-pizza",
-    "name": "Orange Pizza",
-    "description": "Pizzería Bitcoin-friendly",
-    "logo": "/images/partners/orange-pizza.svg",
-    "url": "https://orangepizza.mx",
-    "location": "CDMX"
-  }
-]
+{
+  "partners": [
+    {
+      "id": "carnes-de-puebla",
+      "name": "Carnes de Puebla",
+      "description": "Carnicería premium con entrega en todo México",
+      "website": "https://carnesdepuebla.com",
+      "logo": "/logos/partners/carnes-de-puebla.svg",
+      "acceptsLightning": true
+    },
+    {
+      "id": "cafe-veracruz",
+      "name": "Café Veracruz",
+      "description": "Café de especialidad tostado artesanalmente",
+      "website": "https://cafeveracruz.mx",
+      "logo": "/logos/partners/cafe-veracruz.svg",
+      "acceptsLightning": true
+    },
+    {
+      "id": "miel-yucatan",
+      "name": "Miel de Yucatán",
+      "description": "Miel orgánica de abejas meliponas",
+      "website": "https://mielyucatan.com",
+      "logo": "/logos/partners/miel-yucatan.svg",
+      "acceptsLightning": true
+    },
+    {
+      "id": "vino-artesanal",
+      "name": "Vinos Artesanales MX",
+      "description": "Vinos boutique de productores locales",
+      "website": "https://vinosartesanales.mx",
+      "logo": "/logos/partners/vino-artesanal.svg",
+      "acceptsLightning": false
+    }
+  ]
+}

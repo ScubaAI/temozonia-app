@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Camera, Users } from "lucide-react";
-import { BullBitcoinWalletButton } from "./BullBitcoinWalletButton";
+import { BullBitcoinWalletButton } from "@/components/features/payment/BullBitcoinWalletButton";
 
 export function Footer({ locale }: { locale: string }) {
   const t = useTranslations("footer");

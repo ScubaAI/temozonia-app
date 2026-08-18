@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Bitcoin } from "lucide-react";
 import { CartTester } from "@/components/ui/CartTester";
+import { PRODUCTS } from "@/lib/constants";
 
 export const metadata = { title: "Design Kit (QA interno)" };
 
@@ -62,7 +63,7 @@ export default async function DesignKitPage({ params }: { params: Promise<{ loca
       <div className="gold-divider"><span aria-hidden>◆</span></div>
 
       {/* QA carrito (Fase 2) */}
-      <CartTester />
+      {PRODUCTS.length > 0 && <CartTester />}
     </main>
   );
 }

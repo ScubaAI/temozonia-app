@@ -1,22 +1,28 @@
 "use client";
 
+import { useTranslations, useLocale } from "next-intl";
 import { MessageCircle } from "lucide-react";
+import { getWhatsAppLink } from "@/lib/constants";
+import type { Locale } from "@/lib/i18n/routing";
 
 export function WhatsAppFloat() {
-  // Número formateado para la API de WhatsApp (52 + 10 dígitos)
-  const phoneNumber = "5219994918221";
-  const message = encodeURIComponent("Hola Temozonia Carnes Ahumadas! Me interesa hacer un pedido.");
-  const waLink = `https://wa.me/${phoneNumber}?text=${message}`;
+  const t = useTranslations("common.whatsapp");
+  const locale = useLocale() as Locale;
+  const whatsappLink = getWhatsAppLink(locale);
 
   return (
     <a
-      href={waLink}
+      href={whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-green-500/30 transition-transform hover:scale-110 hover:shadow-xl"
-      aria-label="Contactar por WhatsApp"
+      aria-label={t("floatText")}
+      className="liquid-glass fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-deep-red/90 text-cream shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-deep-red"
     >
-      <MessageCircle size={28} fill="white" />
+      <MessageCircle className="h-7 w-7" aria-hidden="true" />
+
+      {/* Punto de notificación animado */}
+      <span className="absolute right-1 top-1 h-3 w-3 animate-ping rounded-full bg-gold-300 opacity-75" />
+      <span className="absolute right-1 top-1 h-3 w-3 rounded-full bg-gold-500" />
     </a>
   );
 }

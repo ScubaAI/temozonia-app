@@ -10,7 +10,16 @@
     "total": "Total",
     "subtotal": "Subtotal",
     "delivery": "Envío",
-    "loading": "Cargando…"
+    "loading": "Cargando…",
+    "whatsapp": {
+      "responseBadge": "Respuesta en minutos",
+      "floatText": "¿Necesitas ayuda? Escríbenos por WhatsApp",
+      "greeting": "Hola Temozonia Carnes Ahumadas! Me gustaría hacer un pedido..."
+    },
+    "errors": {
+      "generic": "Ocurrió un error. Por favor intenta de nuevo.",
+      "formSubmit": "Hubo un error al enviar el formulario. Intenta más tarde."
+    }
   },
   "navigation": {
     "home": "Inicio",
@@ -78,7 +87,10 @@
     "title": "Tu carrito",
     "empty": "Tu carrito está vacío.",
     "emptyCta": "Explorar catálogo",
-    "checkout": "Continuar al pago"
+    "emptyDesc": "Agrega productos del catálogo para comenzar tu pedido.",
+    "checkout": "Continuar al pago",
+    "metaTitle": "Carrito de Compras | Temozonia",
+    "metaDescription": "Revisa los productos en tu carrito antes de finalizar tu compra."
   },
   "checkout": {
     "title": "Finalizar Compra",
@@ -108,6 +120,17 @@
     }
   },
   "order": {
+    "status": {
+      "pending": "Pendiente",
+      "paid": "Pagado",
+      "confirmed": "Confirmado",
+      "processing": "En preparación",
+      "shipped": "Enviado",
+      "delivered": "Entregado",
+      "cancelled": "Cancelado",
+      "failed": "Fallido",
+      "refunded": "Reembolsado"
+    },
     "title": "Pedido confirmado",
     "pending": "Esperando confirmación de pago…",
     "receipt": "Recibo digital"
@@ -134,13 +157,18 @@
       "facebook": "Facebook"
     },
     "copyright": "Todos los derechos reservados.",
-    "designedBy": "Plataforma desarrollada por",
-    "wallet": {
-      "label": "¿Sin Bitcoin? Descarga la Wallet",
-      "appName": "Bull Bitcoin",
-      "network": "Lightning",
-      "description": "Wallet Partner Oficial",
-      "partnerText": "Nuestro socio oficial para pagos Bitcoin. Descarga la wallet y únete a la revolución financiera."
+    "designedBy": "Plataforma desarrollada por"
+  },
+  "wallet": {
+    "label": "¿Sin Bitcoin? Descarga la Wallet",
+    "appName": "Bull Bitcoin",
+    "network": "Lightning",
+    "description": "Wallet Partner Oficial",
+    "partnerText": "Nuestro socio oficial para pagos Bitcoin. Descarga la wallet y únete a la revolución financiera.",
+    "bullBitcoin": {
+      "title": "Paga con Bull Bitcoin",
+      "downloadApp": "Descargar app",
+      "emoji": "🐂"
     }
   },
   "delivery": {
@@ -159,8 +187,18 @@
     "hero": {
       "kicker": "Lugar del Remolino",
       "title": "Temozón, cuna de las carnes ahumadas",
+      "heroTitle": "Temozón, cuna de las carnes ahumadas",
       "subtitle": "Desde 1969, nuestra familia ha preservado la tradición yucateca del ahumado artesanal. Recetas secretas transmitidas de generación en generación, cocidas con carbón y paciencia."
     },
+    "metaTitle": "Sobre Nosotros | Temozonia",
+    "metaDescription": "Descubre la historia de Temozonia, tradición yucateca en carnes ahumadas artesanales.",
+    "historicTemples": "Templos Históricos",
+    "ekBalam": "Ek Balam",
+    "ekBalamDescription": "Inspirados en la majestuosidad de Ek Balam, honramos las tradiciones ancestrales del ahumado yucateco.",
+    "visitTemozon": "Visítanos en Temozón",
+    "visitTemozonSubtitle": "Conoce nuestra casa y prueba nuestros productos",
+    "traditionTitle": "Tradición Viva",
+    "traditionDescription": "Cada generación hereda el fuego, el tiempo y el secreto del ahumado. En Temozón no cocinamos carne: conservamos una forma de vida que resiste desde hace más de 50 años.",
     "history": {
       "title": "Nuestra Historia",
       "section1": {
@@ -299,7 +337,16 @@
         "title": "¡Solicitud Enviada!",
         "desc": "Gracias por tu interés. Un asesor de Temozonia se pondrá en contacto contigo muy pronto vía WhatsApp o correo."
       }
-    }
+    },
+    "metaTitle": "Mayoreo | Temozonia",
+    "metaDescription": "¿Tienes un restaurante o negocio? Conoce nuestros precios de mayoreo y distribución.",
+    "title": "Ventas al Mayoreo",
+    "subtitle": "Precios especiales para restaurantes, hoteles y distribuidores",
+    "formTitle": "Solicita información",
+    "submitSuccess": "¡Solicitud enviada! Te contactaremos pronto.",
+    "submitError": "Hubo un error al enviar tu solicitud. Por favor intenta de nuevo.",
+    "submitButton": "Enviar solicitud",
+    "submittingButton": "Enviando..."
   },
   "contact": {
     "hero": {
@@ -307,6 +354,16 @@
       "title": "Visítanos en Mérida",
       "subtitle": "Ven a conocer el auténtico sabor de Temozón. Estamos listos para atenderte con la calidez y tradición que nos caracteriza."
     },
+    "metaTitle": "Contacto | Temozonia",
+    "metaDescription": "Estamos para servirte. Contáctanos por WhatsApp, email o visítanos en Temozón.",
+    "title": "Contáctanos",
+    "emailTitle": "Correo Electrónico",
+    "phoneTitle": "Teléfono",
+    "locationTitle": "Ubicación",
+    "mapTitle": "Mapa",
+    "hoursTitle": "Horario",
+    "hoursWeekdays": "Lunes a Viernes",
+    "hoursWeekends": "Sábados y Domingos",
     "info": {
       "address_title": "Nuestra Ubicación",
       "address": "Calle 12 #182, Fracc. del Parque, Caucel, Mérida, Yucatán, México. CP 97300",
@@ -335,6 +392,9 @@
   },
   "partners": {
     "title": "Comercios Bitcoin-Friendly",
-    "subtitle": "Descubre otros negocios que aceptan Bitcoin en México"
+    "subtitle": "Descubre otros negocios que aceptan Bitcoin en México",
+    "marqueeTitle": "Nuestros Aliados Bitcoin",
+    "marqueeDescription": "Empresas que aceptan Bitcoin Lightning y confían en Temozonia",
+    "ariaLabel": "Carrusel de socios que aceptan Bitcoin"
   }
 }

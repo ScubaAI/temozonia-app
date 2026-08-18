@@ -10,7 +10,16 @@
     "total": "Total",
     "subtotal": "Subtotal",
     "delivery": "Delivery",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "whatsapp": {
+      "responseBadge": "Reply in minutes",
+      "floatText": "Need help? Message us on WhatsApp",
+      "greeting": "Hello Temozonia Smoked Meats! I would like to place an order..."
+    },
+    "errors": {
+      "generic": "An error occurred. Please try again.",
+      "formSubmit": "There was an error submitting the form. Please try again later."
+    }
   },
   "navigation": {
     "home": "Home",
@@ -75,7 +84,10 @@
     "title": "Your cart",
     "empty": "Your cart is empty.",
     "emptyCta": "Browse catalog",
-    "checkout": "Proceed to checkout"
+    "emptyDesc": "Add products from the catalog to start your order.",
+    "checkout": "Proceed to checkout",
+    "metaTitle": "Shopping Cart | Temozonia",
+    "metaDescription": "Review the items in your cart before completing your purchase."
   },
   "checkout": {
     "title": "Checkout",
@@ -96,6 +108,17 @@
     "processing": "Processing..."
   },
   "order": {
+    "status": {
+      "pending": "Pending",
+      "paid": "Paid",
+      "confirmed": "Confirmed",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled",
+      "failed": "Failed",
+      "refunded": "Refunded"
+    },
     "title": "Order confirmed",
     "pending": "Waiting for payment confirmation…",
     "receipt": "Digital receipt"
@@ -122,13 +145,18 @@
       "facebook": "Facebook"
     },
     "copyright": "All rights reserved.",
-    "designedBy": "Platform developed by",
-    "wallet": {
-      "label": "No Bitcoin? Download the Wallet",
-      "appName": "Bull Bitcoin",
-      "network": "Lightning",
-      "description": "Official Wallet Partner",
-      "partnerText": "Our official partner for Bitcoin payments. Download the wallet and join the financial revolution."
+    "designedBy": "Platform developed by"
+  },
+  "wallet": {
+    "label": "No Bitcoin? Download the Wallet",
+    "appName": "Bull Bitcoin",
+    "network": "Lightning",
+    "description": "Official Wallet Partner",
+    "partnerText": "Our official partner for Bitcoin payments. Download the wallet and join the financial revolution.",
+    "bullBitcoin": {
+      "title": "Pay with Bull Bitcoin",
+      "downloadApp": "Download app",
+      "emoji": "🐂"
     }
   },
   "delivery": {
@@ -147,8 +175,18 @@
     "hero": {
       "kicker": "Place of the Whirlwind",
       "title": "Temozón, Birthplace of Smoked Meats",
+      "heroTitle": "Temozón, Birthplace of Smoked Meats",
       "subtitle": "Since 1969, our family has preserved the Yucatecan tradition of artisanal smoking. Secret recipes passed down through generations, cooked with charcoal and patience."
     },
+    "metaTitle": "About Us | Temozonia",
+    "metaDescription": "Discover the history of Temozonia, Yucatecan tradition in artisanal smoked meats.",
+    "historicTemples": "Historic Temples",
+    "ekBalam": "Ek Balam",
+    "ekBalamDescription": "Inspired by the majesty of Ek Balam, we honor the ancestral traditions of Yucatecan smoking.",
+    "visitTemozon": "Visit us in Temozón",
+    "visitTemozonSubtitle": "Come see our home and taste our products",
+    "traditionTitle": "Living Tradition",
+    "traditionDescription": "Each generation inherits the fire, the time, and the secret of smoking. In Temozón we don't just cook meat: we preserve a way of life that has endured for over 50 years.",
     "history": {
       "title": "Our History",
       "section1": {
@@ -287,7 +325,16 @@
         "title": "Request Sent!",
         "desc": "Thank you for your interest. A Temozonia advisor will contact you soon via WhatsApp or email."
       }
-    }
+    },
+    "metaTitle": "Wholesale | Temozonia",
+    "metaDescription": "Do you own a restaurant or business? Learn about our wholesale and distribution pricing.",
+    "title": "Wholesale",
+    "subtitle": "Special pricing for restaurants, hotels and distributors",
+    "formTitle": "Request information",
+    "submitSuccess": "Request sent! We will contact you soon.",
+    "submitError": "There was an error submitting your request. Please try again.",
+    "submitButton": "Submit request",
+    "submittingButton": "Submitting..."
   },
   "contact": {
     "hero": {
@@ -295,6 +342,16 @@
       "title": "Visit us in Mérida",
       "subtitle": "Come and experience the authentic flavor of Temozón. We are ready to serve you with the warmth and tradition that characterizes us."
     },
+    "metaTitle": "Contact | Temozonia",
+    "metaDescription": "We're here to help. Reach us via WhatsApp, email or visit us in Temozón.",
+    "title": "Contact Us",
+    "emailTitle": "Email",
+    "phoneTitle": "Phone",
+    "locationTitle": "Location",
+    "mapTitle": "Map",
+    "hoursTitle": "Hours",
+    "hoursWeekdays": "Weekdays",
+    "hoursWeekends": "Weekends",
     "info": {
       "address_title": "Our Location",
       "address": "Calle 12 #182, Fracc. del Parque, Caucel, Mérida, Yucatán, Mexico. ZIP 97300",
@@ -323,6 +380,9 @@
   },
   "partners": {
     "title": "Bitcoin-Friendly Businesses",
-    "subtitle": "Discover other businesses that accept Bitcoin in Mexico"
+    "subtitle": "Discover other businesses that accept Bitcoin in Mexico",
+    "marqueeTitle": "Our Bitcoin Partners",
+    "marqueeDescription": "Companies that accept Bitcoin Lightning and trust Temozonia",
+    "ariaLabel": "Carousel of Bitcoin-accepting partners"
   }
 }

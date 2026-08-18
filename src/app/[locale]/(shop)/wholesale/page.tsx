@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { TrendingUp, Truck, Award, Clock, CheckCircle2, Store, Utensils, ShoppingCart, Package } from "lucide-react";
+import { CheckCircle2, Clock, Store, Package, Award, Truck, ShoppingCart, Utensils, TrendingUp } from "lucide-react";
 
 const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/TU_ID_DE_FORMULARIO_AQUI/formResponse";
+
 const FORM_ENTRIES = {
   businessName: "entry.111111111",
   contactName: "entry.222222222",
@@ -15,12 +16,9 @@ const FORM_ENTRIES = {
   comments: "entry.777777777",
 };
 
-export default function WholesalePage({ params }: { params: Promise<{ locale: string }> }) {
+export default function WholesalePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const _locale = typeof window !== "undefined" ? window.location.pathname.split("/")[1] : "es";
-  void params;
 
   const t = useTranslations("wholesale");
 

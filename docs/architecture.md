@@ -406,3 +406,14 @@ export interface SeasonalPromo {
 - **Tipos**: Interfaces para modelos de datos complejos, types para unions o alias.
 - **Internacionalización (i18n)**: Todo texto visible al usuario debe estar en los diccionarios (`messages/es.json`, `messages/en.json`) usando `next-intl` (`useTranslations`/`getTranslations`).
 - **Commits**: Seguir el estándar de Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`).
+
+## 8. Estado Actual y Deuda Técnica Frontend
+
+Actualmente, la arquitectura base, integraciones de pago (BTCPay, Mercado Pago) y cotización de envíos (Skydropx) están funcionales. Sin embargo, existen elementos del frontend y deuda técnica pendiente de resolución:
+
+- **Internacionalización (i18n) Incompleta**: Existen cadenas de texto ("hardcoded") en español en componentes como `WhatsAppCTA`, `BitcoinPartnersMarquee`, la página `about`, y la página `wholesale`, evadiendo el uso de `next-intl`. Además, `OrderStatusBadge` tiene el locale fijado a `"es"`.
+- **Datos y URLs Placeholder**: La página de mayoreo (`wholesale/page.tsx`) apunta a un Google Form inexistente (`TU_ID_DE_FORMULARIO_AQUI`). La lista de partners (`bitcoin-partners.json`) incluye URLs de ejemplo (`example.com`).
+- **Valores en Código Duro (Hardcoded)**: Números de teléfono (ej. WhatsApp 9994918221), correos electrónicos y coordenadas GPS están fijos en los componentes React en lugar de provenir de variables de entorno o un archivo de configuración central.
+- **Mensajes Predefinidos de WhatsApp**: Los enlaces de WhatsApp (en el CTA y contacto) incluyen mensajes pre-escritos únicamente en español.
+- **SEO Ausente**: Páginas clave del App Router como `about`, `contact` y `wholesale` carecen de la función `generateMetadata`, perdiendo optimización para motores de búsqueda.
+- **Manejo de Locale Inconsistente**: El componente `cart/page.tsx` no inicializa `setRequestLocale(locale)`, y la página `wholesale/page.tsx` (al ser `"use client"`) extrae el locale de `window.location.pathname` mediante un hack.
