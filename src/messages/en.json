@@ -355,6 +355,33 @@
     "metaDescription": "We're here to help. Reach us via WhatsApp, email or visit us in Temozón.",
     "subtitle": "Come and experience the authentic flavor of Temozón. We are ready to serve you with the warmth and tradition that characterizes us.",
     "title": "Contact Us",
+    "eyebrow": "Contact Us",
+    "contactMethodsTitle": "Contact methods",
+    "socialTitle": "Follow Us",
+    "branchesEyebrow": "Visit Us",
+    "branchesTitle": "Our Locations",
+    "branchesSubtitle": "Two locations in Mérida to serve you with the authentic flavor of Temozón.",
+    "callToOrder": "Instant orders",
+    "getDirections": "Get directions",
+    "wholesaleEyebrow": "Wholesale & events",
+    "wholesaleTitle": "Need volume?",
+    "wholesaleSubtitle": "We serve restaurants, butcher shops, and special events with traditional Yucatecan flavor.",
+    "wholesaleCta": "View wholesale options",
+    "branches": {
+      "caucel": {
+        "name": "Caucel Pueblo",
+        "mapTitle": "Caucel Pueblo branch map"
+      },
+      "parque": {
+        "name": "Fracc. del Parque",
+        "mapTitle": "Fracc. del Parque branch map"
+      }
+    },
+    "schedule": {
+      "martesDomingo": "Tue - Sun",
+      "martesViernes": "Tue - Fri",
+      "sabadoDomingo": "Sat - Sun"
+    },
     "emailTitle": "Email",
     "phoneTitle": "Phone",
     "locationTitle": "Location",

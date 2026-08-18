@@ -363,6 +363,33 @@
     "metaDescription": "Estamos para servirte. Contáctanos por WhatsApp, email o visítanos en Temozón.",
     "subtitle": "Ven a conocer el auténtico sabor de Temozón. Estamos listos para atenderte con la calidez y tradición que nos caracteriza.",
     "title": "Contáctanos",
+    "eyebrow": "Contáctanos",
+    "contactMethodsTitle": "Formas de contacto",
+    "socialTitle": "Síguenos",
+    "branchesEyebrow": "Visítanos",
+    "branchesTitle": "Nuestras Sucursales",
+    "branchesSubtitle": "Dos ubicaciones en Mérida para servirte con el auténtico sabor de Temozonia.",
+    "callToOrder": "Encargos al instante",
+    "getDirections": "Cómo llegar",
+    "wholesaleEyebrow": "Mayoreo y eventos",
+    "wholesaleTitle": "¿Necesitas volumen?",
+    "wholesaleSubtitle": "Atendemos restaurantes, carnicerías y eventos especiales con el sabor tradicional yucateco.",
+    "wholesaleCta": "Ver opciones de mayoreo",
+    "branches": {
+      "caucel": {
+        "name": "Caucel Pueblo",
+        "mapTitle": "Mapa de sucursal Caucel Pueblo"
+      },
+      "parque": {
+        "name": "Fracc. del Parque",
+        "mapTitle": "Mapa de sucursal Fracc. del Parque"
+      }
+    },
+    "schedule": {
+      "martesDomingo": "Mar - Dom",
+      "martesViernes": "Mar - Vie",
+      "sabadoDomingo": "Sáb - Dom"
+    },
     "emailTitle": "Correo Electrónico",
     "phoneTitle": "Teléfono",
     "locationTitle": "Ubicación",
