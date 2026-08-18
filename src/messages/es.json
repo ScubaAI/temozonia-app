@@ -25,6 +25,7 @@
     "home": "Inicio",
     "products": "Productos",
     "about": "Conócenos",
+    "recipes": "Recetas",
     "process": "Proceso",
     "wholesale": "Mayoreo",
     "contact": "Contacto",
@@ -396,5 +397,29 @@
     "marqueeTitle": "Nuestros Aliados Bitcoin",
     "marqueeDescription": "Empresas que aceptan Bitcoin Lightning y confían en Temozonia",
     "ariaLabel": "Carrusel de socios que aceptan Bitcoin"
+  },
+  "recipes": {
+    "title": "Nuestras Recetas",
+    "subtitle": "El secreto del auténtico sabor ahumado",
+    "metaTitle": "Recetas | Temozonia",
+    "metaDescription": "Descubre el proceso artesanal detrás de nuestras carnes ahumadas. Tradición yucateca en cada bocado.",
+    "steps": {
+      "selection": {
+        "title": "Selección",
+        "desc": "Cada mañana, desde muy temprano, seleccionamos la carne más fresca de proveedores locales de confianza."
+      },
+      "marinade": {
+        "title": "Marinado Secreto",
+        "desc": "Preparamos la carne con nuestra receta familiar secreta, una combinación perfecta de especias y sabores yucatecos."
+      },
+      "smoking": {
+        "title": "Ahumado con Carbón",
+        "desc": "Cocemos lentamente sobre carbón, permitiendo que el humo impregne cada fibra de carne con un sabor inigualable."
+      },
+      "quality": {
+        "title": "Control de Calidad",
+        "desc": "Cada pieza es revisada cuidadosamente para asegurar que cumpla con nuestros más altos estándares."
+      }
+    }
   }
 }

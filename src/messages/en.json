@@ -23,7 +23,12 @@
   },
   "navigation": {
     "home": "Home",
+    "products": "Products",
+    "about": "About Us",
+    "recipes": "Recipes",
     "menu": "Catalog",
+    "wholesale": "Wholesale",
+    "contact": "Contact",
     "cart": "Cart",
     "checkout": "Checkout",
     "order": "My order"
@@ -384,5 +389,29 @@
     "marqueeTitle": "Our Bitcoin Partners",
     "marqueeDescription": "Companies that accept Bitcoin Lightning and trust Temozonia",
     "ariaLabel": "Carousel of Bitcoin-accepting partners"
+  },
+  "recipes": {
+    "title": "Our Recipes",
+    "subtitle": "The secret behind the authentic smoked flavor",
+    "metaTitle": "Recipes | Temozonia",
+    "metaDescription": "Discover the artisanal process behind our smoked meats. Yucatecan tradition in every bite.",
+    "steps": {
+      "selection": {
+        "title": "Selection",
+        "desc": "Every morning, from very early, we select the freshest meat from trusted local suppliers."
+      },
+      "marinade": {
+        "title": "Secret Marinade",
+        "desc": "We prepare the meat with our secret family recipe, a perfect combination of spices and Yucatecan flavors."
+      },
+      "smoking": {
+        "title": "Charcoal Smoking",
+        "desc": "We cook slowly over charcoal, allowing the smoke to infuse every fiber of meat with unparalleled flavor."
+      },
+      "quality": {
+        "title": "Quality Control",
+        "desc": "Each piece is carefully reviewed to ensure it meets our highest standards."
+      }
+    }
   }
 }
