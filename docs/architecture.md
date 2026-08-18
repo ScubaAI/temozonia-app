@@ -11,9 +11,13 @@
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐   │
 │  │ Homepage │  │ Catálogo  │  │ Checkout │  │ Confirmación│   │
 │  │          │  │  (menu)   │  │ (pago)   │  │  (order)   │   │
+│  └──────────┘  └──────────┘  └──────────┘  └────────────┘   │
+│       │              │              │              │         │
+│       │   /[locale]/  │   /[locale]/  │   /[locale]/  │       │
+│       │   /menu      │   /checkout  │   /order/[id]│        │
 └─────────────────────────────────────────────────────────────┘
-                          │  HTTPS / API Routes
-                          ▼
+                           │  HTTPS / API Routes
+                           ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                  Next.js 15 (Vercel Edge)                   │
 │                                                             │
@@ -29,8 +33,8 @@
 ┌──────────────┐          ▼                 ▼                          ▼                      ▼
 │  PostgreSQL  │    ┌──────────┐  ┌────────────────┐  ┌────────────────────────┐  ┌───────────────┐
 │  Database    │    │ BTCPay   │  │ Mercado Pago   │  │ WhatsApp Business API  │  │   Skydropx    │
-└──────────────┘    │ Server   │  │ (Stripe fallback)│ │ (notificaciones)       │  │ (envíos/rates)│
-                    └──────────┘  └────────────────┘  └────────────────────────┘  └───────────────┘
+│  (Prisma)    │    │ Server   │  │ (Stripe fallback)│ │ (notificaciones)       │  │ (envíos/rates)│
+└──────────────┘    └──────────┘  └────────────────┘  └────────────────────────┘  └───────────────┘
 ```
 
 ## 2. Decisiones Técnicas (ADRs)
@@ -88,42 +92,90 @@ src/
 ├── app/                    # Rutas, layouts y API Routes (App Router)
 │   ├── api/                # Endpoints de API (Backend)
 │   │   ├── btcpay/         # Creación de facturas BTCPay Server
+│   │   │   └── create-invoice/route.ts
 │   │   ├── mercadopago/    # Creación de preferencias Mercado Pago
+│   │   │   └── create-preference/route.ts
 │   │   ├── orders/         # Creación y guardado de órdenes con Prisma
+│   │   │   └── route.ts
 │   │   ├── shipping/       # Cálculo de tarifas de envíos con Skydropx
+│   │   │   └── rates/route.ts
 │   │   ├── stripe/         # Sesiones de checkout Stripe fallback
+│   │   │   └── create-checkout/route.ts
 │   │   ├── webhook/        # Webhooks de confirmación
 │   │   │   ├── btcpay/     # Confirmación de facturas Bitcoin
+│   │   │   │   └── route.ts
 │   │   │   └── mercadopago/# Confirmación de transacciones Mercado Pago
+│   │   │       └── route.ts
 │   │   └── whatsapp/       # Proxy para envío de notificaciones de WhatsApp
+│   │       └── route.ts
 │   ├── [locale]/           # Enrutamiento dinámico internacionalizado (i18n)
-│   │   ├── (shop)/         # Páginas de la tienda (about, cart, checkout, contact, menu, order/[id], wholesale)
+│   │   ├── (shop)/         # Páginas de la tienda (route group)
+│   │   │   ├── about/      # Página "Conócenos" + SEO metadata
+│   │   │   ├── cart/       # Página del carrito + SEO metadata
+│   │   │   ├── checkout/   # Página de checkout (wrapper de CheckoutForm)
+│   │   │   ├── contact/    # Página de contacto + SEO metadata
+│   │   │   ├── menu/       # Catálogo de productos
+│   │   │   ├── order/      # Recibo digital de orden
+│   │   │   │   └── [id]/page.tsx
+│   │   │   └── wholesale/  # Página de mayoreo + SEO metadata
 │   │   ├── design-kit/     # Página interna de control de diseño (QA)
-│   │   ├── layout.tsx      # Layout principal e inicializador de fuentes
+│   │   ├── layout.tsx      # Layout principal, fuentes e inicializadores
 │   │   ├── not-found.tsx   # Página de error 404 localizada
 │   │   └── page.tsx        # Homepage del sitio
 │   └── global-error.tsx    # Manejo global de excepciones
 ├── components/             # Componentes React
-│   ├── features/           # Componentes de negocio (cart, checkout, delivery, landing, payment, product, promo, receipt)
-│   ├── layout/             # Componentes estructurales (Header, Footer, WhatsAppFloat, CartDrawerWrapper)
-│   └── ui/                 # Componentes genéricos de diseño (Badge, Button, Card, CartTester, Input, Modal)
-├── data/                   # Archivos de datos estáticos y JSONs (seasonal-promos.json)
-├── hooks/                  # Hooks personalizados de React (useLocale, useMediaQuery)
+│   ├── features/           # Componentes de negocio
+│   │   ├── cart/           # CartView, CartItem, CartDrawer
+│   │   ├── checkout/       # CheckoutForm
+│   │   ├── delivery/       # DeliveryZoneCalculator
+│   │   ├── landing/        # Hero, WhatsAppCTA, BitcoinPartnersMarquee
+│   │   ├── order/          # OrderStatusBadge, DigitalReceipt, WhatsAppNotification, ReceiptGold
+│   │   ├── payment/        # BullBitcoinWalletButton, PaymentMethodSelector, LiquidGlassTotal
+│   │   ├── product/        # ProductCard, ProductList
+│   │   └── promo/          # SeasonalPromoCard, SeasonalPromoCarousel
+│   ├── layout/             # Componentes estructurales
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Navigation.tsx
+│   │   ├── WhatsAppFloat.tsx
+│   │   ├── WhatsAppCTA.tsx
+│   │   └── CartDrawerWrapper.tsx
+│   └── ui/                 # Componentes genéricos de diseño
+│       ├── Badge.tsx
+│       ├── Button.tsx
+│       ├── Card.tsx
+│       ├── Input.tsx
+│       ├── Modal.tsx
+│       └── CartTester.tsx
+├── data/                   # Archivos de datos estáticos y JSONs
+│   ├── bitcoin-partners.json
+│   └── seasonal-promos.json
+├── hooks/                  # Hooks personalizados de React
 ├── lib/                    # Configuración de librerías, constantes y utilidades
-│   ├── i18n/               # Configuración del motor next-intl (request.ts, routing.ts)
-│   ├── constants.ts        # Reglas de negocio, catálogo de productos y zonas de envío
+│   ├── i18n/               # Configuración del motor next-intl
+│   │   ├── request.ts
+│   │   └── routing.ts
+│   ├── constants.ts        # Reglas de negocio, catálogo, zonas de envío
 │   ├── formatters.ts       # Formateadores de moneda, fecha y teléfono
 │   ├── prisma.ts           # Inicialización y singleton de PrismaClient
 │   └── utils.ts            # Utilidad helper clsx/tailwind-merge
-├── messages/               # Diccionarios de traducción JSON (es.json, en.json)
+├── messages/               # Diccionarios de traducción JSON
+│   ├── es.json
+│   └── en.json
 ├── services/               # Clientes y SDKs para servicios de APIs externas
-│   ├── btcpay.service.ts   # Integración BTCPay Server API
-│   ├── mercadopago.service.ts # Integración Mercado Pago API
-│   ├── shipping.service.ts # Integración Skydropx API (envíos)
-│   └── whatsapp.service.ts # Integración WhatsApp Business Cloud API
-├── store/                  # Estado global con Zustand (cartStore.ts)
-├── styles/                 # Hojas de estilo globales y efectos especiales (globals.css, animations.css)
-├── types/                  # Definiciones de tipos TypeScript (product.ts, order.ts, i18n.ts, zustand.d.ts)
+│   ├── btcpay.service.ts
+│   ├── mercadopago.service.ts
+│   ├── shipping.service.ts
+│   └── whatsapp.service.ts
+├── store/                  # Estado global con Zustand
+│   └── cartStore.ts
+├── styles/                 # Hojas de estilo globales y efectos especiales
+│   ├── globals.css
+│   └── animations.css
+├── types/                  # Definiciones de tipos TypeScript
+│   ├── product.ts
+│   ├── order.ts
+│   └── i18n.ts
 └── middleware.ts           # Middleware para redirección de locales y control de caché
 ```
 
@@ -132,7 +184,7 @@ src/
 | [prisma/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/prisma) | Configuración y esquema de la base de datos (ORM) |
 | [src/app/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app) | Enrutamiento, layouts y controladores de API (Next.js App Router) |
 | [src/components/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/components) | UI reutilizable del diseño y componentes específicos de negocio |
-| [src/data/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/data) | Datos locales en formato JSON (promociones, etc.) |
+| [src/data/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/data) | Datos locales en formato JSON (partners, promociones) |
 | [src/lib/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/lib) | Módulos de utilidades compartidas, formateadores y clientes (Prisma) |
 | [src/services/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services) | Lógica de llamada e integraciones con APIs externas (Stripe, BTCPay, MP, Skydropx) |
 | [src/store/](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/store) | Almacenamiento de estado del lado del cliente persistido en local |
@@ -148,7 +200,7 @@ src/
 3. Hace click en "Checkout" → /[locale]/checkout
    │
 4. Escribe datos de dirección e inicia cotización de envíos:
-   └── POST /api/shipping/rates (Skydropx API) → Muestra opciones (FedEx, DHL, Estafeta) y recalcula total con envío
+   └── POST /api/shipping/rates (Skydropx API) → Muestra opciones y recalcula total con envío
    │
 5. Selecciona método de pago y envía orden:
    ├── Bitcoin (BTCPay Server)
@@ -257,6 +309,7 @@ export interface ProductWithVariants extends Product {
 }
 
 export type ProductCategory =
+  | "carnes"
   | "frutas"
   | "flores"
   | "otros"
@@ -289,6 +342,7 @@ export const ORDER_STATUS = {
   PENDING: "pending",
   PAID: "paid",
   CONFIRMED: "confirmed",
+  PROCESSING: "processing",
   SHIPPED: "shipped",
   DELIVERED: "delivered",
   FAILED: "failed",
@@ -372,7 +426,41 @@ interface CartState {
 }
 ```
 
-### 5.5 Promociones Temporales ([seasonal-promos.json](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/data/seasonal-promos.json))
+### 5.5 Constantes y Configuración ([constants.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/lib/constants.ts))
+
+```ts
+// Reglas de negocio
+export const SITE = {
+  freeShippingThreshold: 50000, // En centavos ($500.00 MXN)
+};
+
+export const DELIVERY_ZONES = [
+  { id: "local", labelKey: "delivery.local", eta: "24h", fee: 0 },
+  { id: "regional", labelKey: "delivery.regional", eta: "2-3 días", fee: 1500 },
+  { id: "nacional", labelKey: "delivery.nacional", eta: "5-7 días", fee: 3000 },
+];
+
+export const CATEGORIES = [
+  { id: "1", name: "Carnes", slug: "carnes", description: "", image: "" },
+  // ...
+];
+
+export const PRODUCTS: Product[] = []; // Catálogo centralizado (pendiente poblar)
+
+// Utilidades
+export const BUSINESS = {
+  name: "Temozonia Carnes Ahumadas",
+  phone: { raw: "...", display: "+52 1 999 491 8221" },
+  email: "hola@temozonia.com",
+  address: { ... },
+  coordinates: { ... },
+  social: { ... },
+};
+
+export const getWhatsAppLink = (locale: Locale, customMessage?: string) => { ... };
+```
+
+### 5.6 Promociones Temporales ([seasonal-promos.json](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/data/seasonal-promos.json))
 
 ```ts
 export interface SeasonalPromo {
@@ -390,11 +478,11 @@ export interface SeasonalPromo {
 
 | Servicio | Responsabilidad | Archivo de Cliente / Endpoint | Métodos clave |
 |----------|-----------------|-------------------------------|---------------|
-| **BTCPay Server** | Generación de facturas Bitcoin (on-chain / lightning), verificación de firmas y webhooks de cobro. | [btcpay.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/btcpay.service.ts)<br>Webhook: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/webhook/btcpay/route.ts) | `createInvoice`, `verifyBtcpaySignature`, `getInvoiceStatus`, `updateOrderFromBtcpay` |
-| **Mercado Pago** | Generación de checkout preferences, validación de firmas y transacciones fiat (MXN). | [mercadopago.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/mercadopago.service.ts)<br>Webhook: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/webhook/mercadopago/route.ts) | `createPreference`, `getPaymentStatus`, `verifyWebhookSignature` |
-| **Skydropx** | Cotización y cálculo dinámico de tarifas de envío y paquetería multicarrier. | [shipping.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/shipping.service.ts)<br>Cálculo API: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/shipping/rates/route.ts) | `getShippingRates` |
-| **WhatsApp Business API** | Envío de confirmaciones de órdenes en texto plano al cliente y notificaciones internas al admin. | [whatsapp.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/whatsapp.service.ts)<br>Proxy API: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/whatsapp/route.ts) | `sendWhatsAppMessage`, `sendOrderConfirmation` |
-| **Stripe** | Procesamiento de checkout fallback para pagos tradicionales (tarjetas de crédito/débito). | Ruta API: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/stripe/create-checkout/route.ts) | Utiliza directamente el cliente `stripe` de NPM. |
+| **BTCPay Server** | Generación de facturas Bitcoin (on-chain / lightning), verificación de firmas y webhooks de cobro. | [btcpay.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/btcpay.service.ts)<br>Webhook: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/webhook/btcpay/route.ts)<br>API: [create-invoice/route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/btcpay/create-invoice/route.ts) | `createInvoice`, `verifyBtcpaySignature`, `getInvoiceStatus`, `updateOrderFromBtcpay` |
+| **Mercado Pago** | Generación de checkout preferences, validación de firmas y transacciones fiat (MXN). | [mercadopago.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/mercadopago.service.ts)<br>Webhook: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/webhook/mercadopago/route.ts)<br>API: [create-preference/route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/mercadopago/create-preference/route.ts) | `createPreference`, `getPaymentStatus`, `verifyWebhookSignature` |
+| **Skydropx** | Cotización y cálculo dinámico de tarifas de envío y paquetería multicarrier. | [shipping.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/shipping.service.ts)<br>API: [rates/route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/shipping/rates/route.ts) | `getShippingRates` |
+| **WhatsApp Business API** | Envío de confirmaciones de órdenes en texto plano al cliente y notificaciones internas al admin. | [whatsapp.service.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/services/whatsapp.service.ts)<br>API: [route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/whatsapp/route.ts) | `sendWhatsAppMessage`, `sendOrderConfirmation` |
+| **Stripe** | Procesamiento de checkout fallback para pagos tradicionales (tarjetas de crédito/débito). | API: [create-checkout/route.ts](file:///c:/Users/PAV/Desktop/Aceptabitcoin/temozonia/src/app/api/stripe/create-checkout/route.ts) | Utiliza directamente el cliente `stripe` de NPM. |
 
 > [!NOTE]
 > Las firmas y firmas HMAC de los webhooks están implementadas para **BTCPay Server** y **Mercado Pago**, y existen controladores de ruta (`route.ts`) activos para ambos webhooks (`/api/webhook/btcpay` y `/api/webhook/mercadopago`). Solo Stripe carece de controlador de webhook en `/api/webhook`.
@@ -409,11 +497,21 @@ export interface SeasonalPromo {
 
 ## 8. Estado Actual y Deuda Técnica Frontend
 
-Actualmente, la arquitectura base, integraciones de pago (BTCPay, Mercado Pago) y cotización de envíos (Skydropx) están funcionales. Sin embargo, existen elementos del frontend y deuda técnica pendiente de resolución:
+### Completado
+- **Arquitectura base**: Next.js 15 App Router con routing dinámico `[locale]` (es, en).
+- **i18n**: Diccionarios completos en `messages/es.json` y `messages/en.json` para páginas principales (home, menu, cart, checkout, order, contact, about, wholesale, footer, delivery, notFound, wallet).
+- **SEO**: `generateMetadata` implementado en `about`, `contact`, `wholesale`, `cart` y layout principal.
+- **Carrito**: Estado global con Zustand + localStorage (`cartStore.ts`), drawer wrapper, vista de carrito y filas de ítem.
+- **Checkout**: Formulario completo con selección de zona de envío, cálculo dinámico con Skydropx y selector de método de pago (BTC / Tarjeta).
+- **Pagos**: Integración funcional de BTCPay Server y Mercado Pago. Stripe disponible como fallback.
+- **Webhooks**: Controladores activos para `/api/webhook/btcpay` y `/api/webhook/mercadopago`.
+- **Design System**: Componentes UI base (Button, Badge, Card, Input, Modal) y utilidades de diseño (.liquid-glass, .btn-heritage, .gold-divider, etc.).
+- **Componentes de negocio**: `OrderStatusBadge`, `DigitalReceipt`, `WhatsAppNotification`, `BullBitcoinWalletButton`, `BitcoinPartnersMarquee`, `SeasonalPromoCarousel`.
+- **Constantes centralizadas**: `SITE`, `DELIVERY_ZONES`, `CATEGORIES`, `PRODUCTS`, `BUSINESS`, `getWhatsAppLink` en `src/lib/constants.ts`.
 
-- **Internacionalización (i18n) Incompleta**: Existen cadenas de texto ("hardcoded") en español en componentes como `WhatsAppCTA`, `BitcoinPartnersMarquee`, la página `about`, y la página `wholesale`, evadiendo el uso de `next-intl`. Además, `OrderStatusBadge` tiene el locale fijado a `"es"`.
-- **Datos y URLs Placeholder**: La página de mayoreo (`wholesale/page.tsx`) apunta a un Google Form inexistente (`TU_ID_DE_FORMULARIO_AQUI`). La lista de partners (`bitcoin-partners.json`) incluye URLs de ejemplo (`example.com`).
-- **Valores en Código Duro (Hardcoded)**: Números de teléfono (ej. WhatsApp 9994918221), correos electrónicos y coordenadas GPS están fijos en los componentes React en lugar de provenir de variables de entorno o un archivo de configuración central.
-- **Mensajes Predefinidos de WhatsApp**: Los enlaces de WhatsApp (en el CTA y contacto) incluyen mensajes pre-escritos únicamente en español.
-- **SEO Ausente**: Páginas clave del App Router como `about`, `contact` y `wholesale` carecen de la función `generateMetadata`, perdiendo optimización para motores de búsqueda.
-- **Manejo de Locale Inconsistente**: El componente `cart/page.tsx` no inicializa `setRequestLocale(locale)`, y la página `wholesale/page.tsx` (al ser `"use client"`) extrae el locale de `window.location.pathname` mediante un hack.
+### Deuda Técnica Pendiente
+- **Catálogo de productos**: `PRODUCTS` y `CATEGORIES` en `constants.ts` son arrays vacíos/stub. Se requiere poblar con datos reales o conectar a CMS/API.
+- **Formulario de mayoreo**: `wholesale/page.tsx` apunta a un Google Form placeholder (`TU_ID_DE_FORMULARIO_AQUI`). Se requiere reemplazar por el ID real o migrar a un endpoint propio.
+- **Datos hardcodeados**: Algunas URLs y valores de negocio (teléfonos, emails, coordenadas) están definidos en `constants.ts` pero deberían provenir de variables de entorno para despliegues multi-ambiente.
+- **Build warnings**: Variables unused en `about/page.tsx`, `CartView.tsx`, `WhatsAppCTA.tsx`, `DigitalReceipt.tsx` y uso de `<img>` en lugar de `next/image` en `CartView.tsx`.
+- **Stripe webhook**: No existe controlador de webhook para `/api/webhook/stripe`.
