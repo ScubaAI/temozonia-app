@@ -34,6 +34,7 @@
   },
   "home": {
     "heroKicker": "Temozón, Yucatán",
+    "heroBadge": "Ahumado con leña · Desde 2013",
     "heroTitle": "Temozonia Carnes Ahumadas",
     "heroSubtitle": "Elaboramos carne, longaniza, costillas ahumadas y otras especialidades 100% artesanales. Calidad, tradición y sabor en cada bocado.",
     "heroLocation": "Caucel, Mérida — Cuna de nuestra tradición",
@@ -403,6 +404,14 @@
     "subtitle": "El secreto del auténtico sabor ahumado",
     "metaTitle": "Recetas | Temozonia",
     "metaDescription": "Descubre el proceso artesanal detrás de nuestras carnes ahumadas. Tradición yucateca en cada bocado.",
+    "ariaLabel": "Recetas típicas de Yucatán con nuestros ahumados",
+    "eyebrow": "Cocina yucateca · Con nuestros ahumados",
+    "marqueeTitle": "Sabores de la Región",
+    "marqueeDescription": "Recetas tradicionales de Yucatán que cobran vida con nuestros ahumados sobre leña.",
+    "usesProduct": "Lleva nuestro:",
+    "badgeFeatured": "Destacada",
+    "cardCta": "Ver receta",
+    "cta": "Ver todas las recetas",
     "steps": {
       "selection": {
         "title": "Selección",
@@ -420,6 +429,14 @@
         "title": "Control de Calidad",
         "desc": "Cada pieza es revisada cuidadosamente para asegurar que cumpla con nuestros más altos estándares."
       }
+    },
+    "items": {
+      "cochinita": { "name": "Cochinita Pibil Ahumada", "product": "Carne Ahumada Tradicional" },
+      "panuchos": { "name": "Panuchos de Costilla", "product": "Costilla Ahumada Tradicional" },
+      "tacos": { "name": "Tacos de Longaniza", "product": "Longaniza Tradicional \"Especial\"" },
+      "salbutes": { "name": "Salbutes Ahumados", "product": "Carne Ahumada Tradicional" },
+      "relleno": { "name": "Relleno Blanco de Pavo", "product": "Servicio de Ahumado" },
+      "queso": { "name": "Queso Relleno Yucateco", "product": "Longaniza Negra" }
     }
   }
 }

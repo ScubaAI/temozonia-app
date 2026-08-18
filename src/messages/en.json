@@ -35,6 +35,7 @@
   },
   "home": {
     "heroKicker": "Temozón, Yucatán",
+    "heroBadge": "Wood-Smoked · Since 2013",
     "heroTitle": "Temozonia Smoked Meats",
     "heroSubtitle": "We make smoked meat, artisanal sausage, smoked ribs and other 100% handmade specialties. Quality, tradition and flavor in every bite.",
     "heroLocation": "Caucel, Mérida — Birthplace of our tradition",
@@ -395,6 +396,14 @@
     "subtitle": "The secret behind the authentic smoked flavor",
     "metaTitle": "Recipes | Temozonia",
     "metaDescription": "Discover the artisanal process behind our smoked meats. Yucatecan tradition in every bite.",
+    "ariaLabel": "Traditional Yucatecan recipes with our smoked meats",
+    "eyebrow": "Yucatecan cuisine · With our smoked meats",
+    "marqueeTitle": "Flavors of the Region",
+    "marqueeDescription": "Traditional Yucatecan recipes brought to life with our wood-smoked meats.",
+    "usesProduct": "Made with our:",
+    "badgeFeatured": "Featured",
+    "cardCta": "View recipe",
+    "cta": "See all recipes",
     "steps": {
       "selection": {
         "title": "Selection",
@@ -412,6 +421,14 @@
         "title": "Quality Control",
         "desc": "Each piece is carefully reviewed to ensure it meets our highest standards."
       }
+    },
+    "items": {
+      "cochinita": { "name": "Smoked Cochinita Pibil", "product": "Traditional Smoked Pork" },
+      "panuchos": { "name": "Rib Panuchos", "product": "Traditional Smoked Ribs" },
+      "tacos": { "name": "Longaniza Tacos", "product": "Traditional Longaniza \"Special\"" },
+      "salbutes": { "name": "Smoked Salbutes", "product": "Traditional Smoked Pork" },
+      "relleno": { "name": "Turkey Relleno Blanco", "product": "Smoking Service" },
+      "queso": { "name": "Yucatecan Stuffed Cheese", "product": "Black Longaniza" }
     }
   }
 }
